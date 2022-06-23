@@ -3,7 +3,7 @@ import { Home } from "./show/pages"
 
 const Application = () => {
   return (
-    <div className="flex flex-col justify-between items-center h-screen">
+    <div>
       <Navbar />
       <Home />
       <Footer />
