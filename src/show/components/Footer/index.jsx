@@ -1,6 +1,6 @@
 import {
-  BsGithub,
   BsFacebook,
+  BsGithub,
   BsInstagram,
   BsSpeedometer2,
 } from "react-icons/bs"
