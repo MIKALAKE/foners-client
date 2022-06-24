@@ -7,10 +7,10 @@ const Navbar = () => {
         <BsSpeedometer2 className="mx-2 select-none text-4xl" />
         FOners
       </div>
-      <div className="flex select-none items-center flex-row text-white text-md mt-1 ml-10 cursor-pointer hover:text-charade">
+      <div className="flex select-none items-center flex-row text-white text-md mt-1 ml-10 cursor-pointer hover:text-charade transition delay-200">
         Calendar
       </div>
-      <div className="flex items-center select-none flex-row text-white text-md mt-1 ml-10 cursor-pointer hover:text-charade">
+      <div className="flex items-center select-none flex-row text-white text-md mt-1 ml-10 cursor-pointer hover:text-charade transition delay-200">
         Standings
       </div>
     </div>
