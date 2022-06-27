@@ -84,23 +84,10 @@ const Home = () => {
         Drivers
         <div className="flex flex-row justify-between overflow-x-auto">
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            car={
-              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
-            }
-            first_name="Charles"
-            last_name="Leclerc"
-          />
-          <DriverCard
-            src1={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            src2={
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
@@ -110,23 +97,10 @@ const Home = () => {
             last_name="Leclerc"
           />
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            car={
-              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
-            }
-            first_name="Charles"
-            last_name="Leclerc"
-          />
-          <DriverCard
-            src1={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            src2={
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
@@ -136,23 +110,10 @@ const Home = () => {
             last_name="Leclerc"
           />
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            car={
-              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
-            }
-            first_name="Charles"
-            last_name="Leclerc"
-          />
-          <DriverCard
-            src1={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            src2={
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
@@ -162,23 +123,10 @@ const Home = () => {
             last_name="Leclerc"
           />
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            car={
-              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
-            }
-            first_name="Charles"
-            last_name="Leclerc"
-          />
-          <DriverCard
-            src1={
-              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
-            }
-            src2={
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
@@ -188,10 +136,10 @@ const Home = () => {
             last_name="Leclerc"
           />
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
@@ -201,10 +149,62 @@ const Home = () => {
             last_name="Leclerc"
           />
           <DriverCard
-            src1={
+            driver1={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
-            src2={
+            driver2={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            car={
+              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
+            }
+            first_name="Charles"
+            last_name="Leclerc"
+          />
+          <DriverCard
+            driver1={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            driver2={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            car={
+              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
+            }
+            first_name="Charles"
+            last_name="Leclerc"
+          />
+          <DriverCard
+            driver1={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            driver2={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            car={
+              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
+            }
+            first_name="Charles"
+            last_name="Leclerc"
+          />
+          <DriverCard
+            driver1={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            driver2={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            car={
+              "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col/image.png"
+            }
+            first_name="Charles"
+            last_name="Leclerc"
+          />
+          <DriverCard
+            driver1={
+              "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
+            }
+            driver2={
               "https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png"
             }
             car={
