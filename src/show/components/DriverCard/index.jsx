@@ -1,11 +1,11 @@
-const DriverCard = ({ car, first_name, last_name, src }) => {
+const DriverCard = ({ car, first_name, last_name, src1, src2 }) => {
   return (
     <div className="flex flex-col w-72 h-64 my-5 ml-5 cursor-pointer bg-charade rounded-md hover:bg-white-700 shadow-xl transition-all delay-200 ease-in-out">
       <div className="flex flex-col items-center">
         <div className="flex flex-row ">
           <div className="flex flex-col hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all">
             <img
-              src={src}
+              src={src1}
               alt="Driver Picture"
               className="w-24 h-24 ml-2 mr-8 mt-3"
             />
@@ -16,7 +16,7 @@ const DriverCard = ({ car, first_name, last_name, src }) => {
           </div>
           <div className="flex flex-col  hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all">
             <img
-              src={src}
+              src={src2}
               alt="Driver Picture"
               className="w-24 h-24 ml-10 mt-3"
             />

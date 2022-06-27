@@ -1,5 +1,5 @@
-import { BsCalendarFill, BsSpeedometer2 } from "react-icons/bs"
 import { GiPodium } from "react-icons/gi"
+import { BsCalendarFill, BsSpeedometer2 } from "react-icons/bs"
 
 const Navbar = () => {
   return (
