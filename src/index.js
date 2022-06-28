@@ -10,4 +10,3 @@ root.render(
     <Application />
   </React.StrictMode>
 );
-root.render(<Application />);

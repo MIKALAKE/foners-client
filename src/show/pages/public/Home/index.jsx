@@ -7,12 +7,14 @@ const Home = () => {
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   };
+
   const secondDriver = {
     first_name: 'Lewis',
     last_name: 'Hamiltion',
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   };
+
   return (
     <div className='flex flex-col w-full h-full '>
       <div className='flex bg-charade h-52'>
