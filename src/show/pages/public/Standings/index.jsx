@@ -1,4 +1,5 @@
 import { ConstructorStandingCard } from '../../../components';
+import DriverStandingCard from '../../../components/DriverStandingCard';
 
 const Standings = () => {
   return (
@@ -62,7 +63,9 @@ const Standings = () => {
       </div>
       <div className='flex ml-5 mt-3 flex-col text-white text-2xl font-bold antialiased'>
         Drivers Standing
-        <div className='flex flex-row'></div>
+        <div className='flex flex-col'>
+          <DriverStandingCard />
+        </div>
       </div>
     </div>
   );
