@@ -3,7 +3,7 @@ import { BsCalendarFill, BsSpeedometer2 } from 'react-icons/bs';
 
 const Navbar = () => {
   return (
-    <div className='flex drop-shadow-xl bg-secondary w-full h-14 items-center flex-row'>
+    <div className='flex drop-shadow-xl sticky top-0  bg-secondary w-full h-10 items-center flex-row'>
       <div className='flex select-none items-center antialiased text-white font-bold flex-row text-2xl ml-5'>
         <BsSpeedometer2 className='mx-2 select-none text-4xl' />
         FOners

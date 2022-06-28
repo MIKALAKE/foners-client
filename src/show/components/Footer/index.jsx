@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className='flex drop-shadow-md flex-col items-center justify-center w-full bg-white h-32'>
+    <div className='flex pb-2 drop-shadow-md flex-col items-center justify-center w-full bg-white h-32'>
       <div className='flex select-none items-center antialiased font-bold text-secondary flex-row pb-5'>
         <BsSpeedometer2 className=' mx-2 text-2xl' />
         FOners
