@@ -5,13 +5,10 @@ const ConstructorStandingCard = ({ constructor }) => {
         <div className='flex flex-row  mt-4'>
           <div className='flex flex-col items-center'>
             <div className='flex object-cover w-30 h-20'>
-              <img
-                src={constructor.logo_url}
-                alt={constructor.constructor_name}
-              />
+              <img src={constructor.logo_url} alt={constructor.name} />
             </div>
             <div className='flex font-bold text-charade text-lg'>
-              {constructor.constructor_name}
+              {constructor.name}
             </div>
           </div>
           <div className='flex text-charade ml-10 mt-5'>

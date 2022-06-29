@@ -3,8 +3,8 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import DriverCard from './DriverCard';
 import ConstructorCard from './ConstructorCard';
-import ConstructorStandingCard from './ConstructorStandingCard';
 import DriverStandingCard from './DriverStandingCard';
+import ConstructorStandingCard from './ConstructorStandingCard';
 
 export {
   Button,
