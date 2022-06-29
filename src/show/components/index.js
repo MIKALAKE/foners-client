@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import DriverCard from './DriverCard';
 import ConstructorCard from './ConstructorCard';
+import DriverStandingCard from './DriverStandingCard';
 import ConstructorStandingCard from './ConstructorStandingCard';
 
 export {
@@ -10,6 +11,7 @@ export {
   ConstructorCard,
   ConstructorStandingCard,
   DriverCard,
+  DriverStandingCard,
   Footer,
   Navbar
 };
