@@ -7,32 +7,32 @@ const constructors = [
   {
     id: '1',
     name: 'Ferrari',
-    points: '267',
-    place: '1',
+    points: 157,
+    place: 1,
     logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
   },
 
   {
     id: '2',
     name: 'Mercedes',
-    points: '150',
-    place: '2',
+    points: 157,
+    place: 1,
     logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
   },
 
   {
     id: '3',
     name: 'Red Bull',
-    points: '280',
-    place: '3',
+    points: 157,
+    place: 1,
     logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
   },
 
   {
     id: '4',
     name: 'McLaren',
-    points: '88',
-    place: '4',
+    points: 157,
+    place: 1,
     logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
   }
 ];
@@ -41,8 +41,8 @@ const drivers = [
   {
     id: '1',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '1',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -50,8 +50,8 @@ const drivers = [
   {
     id: '2',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '2',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -59,8 +59,8 @@ const drivers = [
   {
     id: '3',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '3',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -68,8 +68,8 @@ const drivers = [
   {
     id: '4',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '4',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -77,8 +77,8 @@ const drivers = [
   {
     id: '',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '5',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -86,8 +86,8 @@ const drivers = [
   {
     id: '5',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '6',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -95,8 +95,8 @@ const drivers = [
   {
     id: '6',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '6',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -104,8 +104,8 @@ const drivers = [
   {
     id: '7',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '8',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -113,8 +113,8 @@ const drivers = [
   {
     id: '8',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '9',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -122,8 +122,8 @@ const drivers = [
   {
     id: '9',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '10',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -131,8 +131,8 @@ const drivers = [
   {
     id: '10',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '11',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   },
@@ -140,8 +140,8 @@ const drivers = [
   {
     id: '11',
     name: 'Charles Leclerc',
-    points: '267',
-    place: '12',
+    points: 157,
+    place: 1,
     avatar_url:
       'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
   }
