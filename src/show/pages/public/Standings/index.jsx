@@ -5,6 +5,7 @@ import {
 
 const constructors = [
   {
+    id: '1',
     name: 'Ferrari',
     points: '267',
     place: '1',
@@ -12,6 +13,7 @@ const constructors = [
   },
 
   {
+    id: '2',
     name: 'Mercedes',
     points: '150',
     place: '2',
@@ -19,6 +21,7 @@ const constructors = [
   },
 
   {
+    id: '3',
     name: 'Red Bull',
     points: '280',
     place: '3',
@@ -26,6 +29,7 @@ const constructors = [
   },
 
   {
+    id: '4',
     name: 'McLaren',
     points: '88',
     place: '4',
@@ -35,6 +39,7 @@ const constructors = [
 
 const drivers = [
   {
+    id: '1',
     name: 'Charles Leclerc',
     points: '267',
     place: '1',
@@ -43,6 +48,7 @@ const drivers = [
   },
 
   {
+    id: '2',
     name: 'Charles Leclerc',
     points: '267',
     place: '2',
@@ -51,6 +57,7 @@ const drivers = [
   },
 
   {
+    id: '3',
     name: 'Charles Leclerc',
     points: '267',
     place: '3',
@@ -59,6 +66,7 @@ const drivers = [
   },
 
   {
+    id: '4',
     name: 'Charles Leclerc',
     points: '267',
     place: '4',
@@ -67,6 +75,7 @@ const drivers = [
   },
 
   {
+    id: '',
     name: 'Charles Leclerc',
     points: '267',
     place: '5',
@@ -75,6 +84,7 @@ const drivers = [
   },
 
   {
+    id: '5',
     name: 'Charles Leclerc',
     points: '267',
     place: '6',
@@ -83,6 +93,7 @@ const drivers = [
   },
 
   {
+    id: '6',
     name: 'Charles Leclerc',
     points: '267',
     place: '6',
@@ -91,6 +102,7 @@ const drivers = [
   },
 
   {
+    id: '7',
     name: 'Charles Leclerc',
     points: '267',
     place: '8',
@@ -99,6 +111,7 @@ const drivers = [
   },
 
   {
+    id: '8',
     name: 'Charles Leclerc',
     points: '267',
     place: '9',
@@ -107,6 +120,7 @@ const drivers = [
   },
 
   {
+    id: '9',
     name: 'Charles Leclerc',
     points: '267',
     place: '10',
@@ -115,6 +129,7 @@ const drivers = [
   },
 
   {
+    id: '10',
     name: 'Charles Leclerc',
     points: '267',
     place: '11',
@@ -123,6 +138,7 @@ const drivers = [
   },
 
   {
+    id: '11',
     name: 'Charles Leclerc',
     points: '267',
     place: '12',
@@ -140,7 +156,10 @@ const Standings = () => {
             Constructors Standing
             <div className='flex flex-row'>
               {constructors.map(constructor => (
-                <ConstructorStandingCard constructor={constructor} />
+                <ConstructorStandingCard
+                  key={constructor.id}
+                  constructor={constructor}
+                />
               ))}
             </div>
           </div>
@@ -150,7 +169,7 @@ const Standings = () => {
           <div className='flex flex-col'>
             <div className='flex mt-3 flex-col'>
               {drivers.map(driver => (
-                <DriverStandingCard driver={driver} />
+                <DriverStandingCard key={driver.id} driver={driver} />
               ))}
             </div>
           </div>
