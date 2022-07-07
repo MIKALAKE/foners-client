@@ -56,7 +56,7 @@ const Home = () => {
               key={constructor.id}
               firstDriver={constructor.drivers[0]}
               secondDriver={constructor.drivers[1]}
-              car='https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari.png.transform/6col-retina/image.png'
+              car_url={constructor.car_url}
             />
           ))}
         </div>
