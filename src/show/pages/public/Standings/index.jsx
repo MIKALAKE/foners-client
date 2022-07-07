@@ -6,8 +6,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Standings = () => {
-  const [constructor, setConstructor] = useState({});
-  const [driver, setDriver] = useState({});
+  const [constructor, setConstructor] = useState([]);
+  const [driver, setDriver] = useState([]);
 
   useEffect(() => {
     axios
