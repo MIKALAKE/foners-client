@@ -1,9 +1,10 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import {
   ConstructorStandingCard,
   DriverStandingCard
 } from '../../../components';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 const Standings = () => {
   const [constructor, setConstructor] = useState([]);
