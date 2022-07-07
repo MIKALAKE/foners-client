@@ -2,160 +2,42 @@ import {
   ConstructorStandingCard,
   DriverStandingCard
 } from '../../../components';
-
-const constructors = [
-  {
-    id: '1',
-    name: 'Ferrari',
-    points: 157,
-    place: 1,
-    logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
-  },
-
-  {
-    id: '2',
-    name: 'Mercedes',
-    points: 157,
-    place: 1,
-    logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
-  },
-
-  {
-    id: '3',
-    name: 'Red Bull',
-    points: 157,
-    place: 1,
-    logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
-  },
-
-  {
-    id: '4',
-    name: 'McLaren',
-    points: 157,
-    place: 1,
-    logo_url: 'http://assets.stickpng.com/images/580b585b2edbce24c47b2c52.png'
-  }
-];
-
-const drivers = [
-  {
-    id: '1',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '2',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '3',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '4',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '5',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '6',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '7',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '8',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '9',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '10',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  },
-
-  {
-    id: '11',
-    name: 'Charles Leclerc',
-    points: 157,
-    place: 1,
-    avatar_url:
-      'https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col/image.png'
-  }
-];
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Standings = () => {
+  const [constructor, setConstructor] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/v1/constructors/')
+      .then(res => {
+        console.log(res.data);
+        setConstructor(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const [driver, setDriver] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/v1/drivers/')
+      .then(res => {
+        console.log(res.data);
+        setDriver(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <div className='flex w-full h-full flex-col'>
       <div className='flex w-full h-full flex-col bg-primary'>
-        <div className='flex w-full bg-white h-52'>
-          <div className='flex ml-5 mt-3 pb-3 flex-col text-charade text-2xl font-bold antialiased'>
+        <div className='flex w-full bg-white h-fit over pb-10 overflow-x-auto'>
+          <div className='flex ml-5 mt-3 pb-3 flex-col justify-between text-charade text-2xl font-bold antialiased'>
             Constructors Standing
-            <div className='flex flex-row'>
-              {constructors.map(constructor => (
+            <div className='flex flex-row justify-between'>
+              {constructor?.map(constructor => (
                 <ConstructorStandingCard
                   key={constructor.id}
                   constructor={constructor}
@@ -168,7 +50,7 @@ const Standings = () => {
           Drivers Standing
           <div className='flex flex-col'>
             <div className='flex mt-3 flex-col'>
-              {drivers.map(driver => (
+              {driver?.map(driver => (
                 <DriverStandingCard key={driver.id} driver={driver} />
               ))}
             </div>
