@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 const Standings = () => {
   const [constructor, setConstructor] = useState({});
+  const [driver, setDriver] = useState({});
 
   useEffect(() => {
     axios
@@ -14,8 +15,6 @@ const Standings = () => {
       .then(res => setConstructor(res.data))
       .catch(err => err);
   }, []);
-
-  const [driver, setDriver] = useState({});
 
   useEffect(() => {
     axios
