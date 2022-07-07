@@ -7,11 +7,13 @@ const DriverStandingCard = ({ driver }) => {
           <div className='flex ml-3 mr-5'>
             <img
               src={driver.avatar_url}
-              alt={driver.name}
+              alt={driver.last_name}
               className='w-32 h-18'
             />
           </div>
-          <div className='flex w-full'>{driver.name}</div>
+          <div className='flex w-full'>
+            {driver.first_name} {driver.last_name}
+          </div>
           <div className='flex justify-end w-full'>
             <div className='flex mr-10'>Points: {driver.points}</div>
           </div>

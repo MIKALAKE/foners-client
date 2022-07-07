@@ -2,8 +2,8 @@ import {
   ConstructorStandingCard,
   DriverStandingCard
 } from '../../../components';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Standings = () => {
   const [constructor, setConstructor] = useState();
@@ -12,7 +12,6 @@ const Standings = () => {
     axios
       .get('http://localhost:3000/v1/constructors/')
       .then(res => {
-        console.log(res.data);
         setConstructor(res.data);
       })
       .catch(err => console.log(err));
@@ -24,7 +23,6 @@ const Standings = () => {
     axios
       .get('http://localhost:3000/v1/drivers/')
       .then(res => {
-        console.log(res.data);
         setDriver(res.data);
       })
       .catch(err => console.log(err));
