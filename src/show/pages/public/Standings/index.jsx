@@ -6,26 +6,22 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Standings = () => {
-  const [constructor, setConstructor] = useState();
+  const [constructor, setConstructor] = useState({});
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/v1/constructors/')
-      .then(res => {
-        setConstructor(res.data);
-      })
-      .catch(err => console.log(err));
+      .then(res => setConstructor(res.data))
+      .catch(err => err);
   }, []);
 
-  const [driver, setDriver] = useState();
+  const [driver, setDriver] = useState({});
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/v1/drivers/')
-      .then(res => {
-        setDriver(res.data);
-      })
-      .catch(err => console.log(err));
+      .then(res => setDriver(res.data))
+      .catch(err => err);
   }, []);
 
   return (
