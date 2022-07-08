@@ -15,9 +15,7 @@ const Standings = () => {
       .get('http://localhost:3000/v1/constructors/')
       .then(res => setConstructor(res.data))
       .catch(err => err);
-  }, []);
 
-  useEffect(() => {
     axios
       .get('http://localhost:3000/v1/drivers/')
       .then(res => setDriver(res.data))

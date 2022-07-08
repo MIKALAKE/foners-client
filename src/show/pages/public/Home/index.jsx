@@ -1,14 +1,15 @@
-import { ConstructorCard, DriverCard } from '../../../components';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+import { ConstructorCard, DriverCard } from '../../../components';
 
 const Home = () => {
-  const [constructor, setConstructor] = useState([]);
+  const [constructors, setConstructors] = useState([]);
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/v1/constructors/')
-      .then(res => setConstructor(res.data))
+      .then(res => setConstructors(res.data))
       .catch(err => err);
   }, []);
 
@@ -41,8 +42,8 @@ const Home = () => {
           Constructors
         </div>
         <div className='flex ml-5 mt-3 flex-row'>
-          {constructor?.map(constructor => (
-            <ConstructorCard key={constructor.id} constructor={constructor} />
+          {constructors?.map(constructors => (
+            <ConstructorCard key={constructors.id} constructor={constructors} />
           ))}
         </div>
       </div>
@@ -51,12 +52,12 @@ const Home = () => {
           Drivers
         </div>
         <div className='flex mt-3 mb-10 flex-row'>
-          {constructor?.map(constructor => (
+          {constructors?.map(constructors => (
             <DriverCard
-              key={constructor.id}
-              firstDriver={constructor.drivers[0]}
-              secondDriver={constructor.drivers[1]}
-              car_url={constructor.car_url}
+              key={constructors.id}
+              firstDriver={constructors.drivers[0]}
+              secondDriver={constructors.drivers[1]}
+              carUrl={constructors.car_url}
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-const DriverCard = ({ car_url, firstDriver, secondDriver }) => {
+const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
   return (
     <div className='flex flex-col w-72 h-64 my-5 ml-5 cursor-pointer bg-charade rounded-md hover:bg-white-700 shadow-xl transition-all delay-200 ease-in-out'>
       <div className='flex flex-col items-center'>
@@ -41,7 +41,7 @@ const DriverCard = ({ car_url, firstDriver, secondDriver }) => {
           </div>
         </div>
         <img
-          src={car_url}
+          src={carUrl}
           alt='Car'
           className='justify-center w-full h-full ml-3 mt-5 hover:scale-110 delay-100 easy-in-out transition-all'
         />
