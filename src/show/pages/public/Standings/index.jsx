@@ -7,18 +7,18 @@ import {
 } from '../../../components';
 
 const Standings = () => {
-  const [constructors, setConstructor] = useState([]);
-  const [drivers, setDriver] = useState([]);
+  const [constructors, setConstructors] = useState([]);
+  const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/v1/constructors/')
-      .then(res => setConstructor(res.data))
+      .then(res => setConstructors(res.data))
       .catch(err => err);
 
     axios
       .get('http://localhost:3000/v1/drivers/')
-      .then(res => setDriver(res.data))
+      .then(res => setDrivers(res.data))
       .catch(err => err);
   }, []);
 
