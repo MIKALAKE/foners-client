@@ -7,8 +7,8 @@ import {
 } from '../../../components';
 
 const Standings = () => {
-  const [constructor, setConstructor] = useState([]);
-  const [driver, setDriver] = useState([]);
+  const [constructors, setConstructor] = useState([]);
+  const [drivers, setDriver] = useState([]);
 
   useEffect(() => {
     axios
@@ -29,7 +29,7 @@ const Standings = () => {
           <div className='flex ml-5 mt-3 pb-3 flex-col justify-between text-charade text-2xl font-bold antialiased'>
             Constructors Standing
             <div className='flex flex-row justify-between'>
-              {constructor?.map(constructor => (
+              {constructors?.map(constructor => (
                 <ConstructorStandingCard
                   key={constructor.id}
                   constructor={constructor}
@@ -42,7 +42,7 @@ const Standings = () => {
           Drivers Standing
           <div className='flex flex-col'>
             <div className='flex mt-3 flex-col'>
-              {driver?.map(driver => (
+              {drivers?.map(driver => (
                 <DriverStandingCard key={driver.id} driver={driver} />
               ))}
             </div>

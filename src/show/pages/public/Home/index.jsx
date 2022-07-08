@@ -42,8 +42,8 @@ const Home = () => {
           Constructors
         </div>
         <div className='flex ml-5 mt-3 flex-row'>
-          {constructors?.map(constructors => (
-            <ConstructorCard key={constructors.id} constructor={constructors} />
+          {constructors?.map(constructor => (
+            <ConstructorCard key={constructor.id} constructor={constructor} />
           ))}
         </div>
       </div>
@@ -52,12 +52,12 @@ const Home = () => {
           Drivers
         </div>
         <div className='flex mt-3 mb-10 flex-row'>
-          {constructors?.map(constructors => (
+          {constructors?.map(constructor => (
             <DriverCard
-              key={constructors.id}
-              firstDriver={constructors.drivers[0]}
-              secondDriver={constructors.drivers[1]}
-              carUrl={constructors.car_url}
+              key={constructor.id}
+              firstDriver={constructor.drivers[0]}
+              secondDriver={constructor.drivers[1]}
+              carUrl={constructor.car_url}
             />
           ))}
         </div>
