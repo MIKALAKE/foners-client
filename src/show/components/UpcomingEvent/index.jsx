@@ -9,7 +9,8 @@ const UpcomingEvent = ({ event }) => {
           <img
             className='flex w-44 h-28'
             src={event?.cover_url}
-            alt='circuit'></img>
+            alt='circuit'
+          />
           <div className='flex flex-row'>
             <div className='flex ml-5 text-white text-3xl items-center font-bold antialiased'>
               {event?.name} -
