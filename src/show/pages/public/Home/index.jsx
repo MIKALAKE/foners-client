@@ -9,7 +9,7 @@ import {
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
-  const [event, setEvent] = useState();
+  const [event, setEvent] = useState({});
 
   useEffect(() => {
     axios
