@@ -9,11 +9,11 @@ import {
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState();
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/v1/events/1')
+      .get('http://localhost:3000/v1/events/does-not-matter')
       .then(res => setEvent(res.data))
       .catch(err => err);
 
@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className='flex flex-col w-full h-full '>
-      <UpcomingEvent key={event.id} event={event} />
+      <UpcomingEvent event={event} />
       <div className='flex flex-col bg-white h-60 overflow-x-auto'>
         <div className='flex ml-5 mt-3 text-black text-2xl font-bold antialiased'>
           Constructors
