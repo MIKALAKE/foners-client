@@ -1,12 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { ConstructorCard, DriverCard } from '../../../components';
+import {
+  ConstructorCard,
+  DriverCard,
+  UpcomingEvent
+} from '../../../components';
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
+  const [event, setEvent] = useState([]);
 
   useEffect(() => {
+    axios
+      .get('http://localhost:3000/v1/events/1')
+      .then(res => setEvent(res.data))
+      .catch(err => err);
+
     axios
       .get('http://localhost:3000/v1/constructors/')
       .then(res => setConstructors(res.data))
@@ -15,28 +25,7 @@ const Home = () => {
 
   return (
     <div className='flex flex-col w-full h-full '>
-      <div className='flex bg-charade h-52'>
-        <div className='flex ml-5 mt-3 flex-col text-white text-3xl font-bold antialiased'>
-          Upcoming Events
-          <div className='flex ml-5 mt-2 w-full h-full '>
-            <img
-              className='flex w-44 h-28'
-              src='https://www.clipartmax.com/png/middle/326-3263821_19-track-vector-race-course-huge-freebie-download-for-formula-1-circuits.png'
-              alt='circuit'></img>
-            <div className='flex flex-col'>
-              <div className='flex ml-5 text-white text-3xl items-center font-bold antialiased'>
-                Barcelona Grand Prix
-                <div className='flex ml-5 text-white text-2xl font-bold antialiased'>
-                  28JUL - 31JUL
-                </div>
-              </div>
-              <div className='flex ml-10 text-white text-lg font-bold antialiased'>
-                Spain Weekend Biggest Grand Prix
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <UpcomingEvent key={event.id} event={event} />
       <div className='flex flex-col bg-white h-60 overflow-x-auto'>
         <div className='flex ml-5 mt-3 text-black text-2xl font-bold antialiased'>
           Constructors
