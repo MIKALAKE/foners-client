@@ -1,11 +1,6 @@
 import * as Paths from './paths.js';
 import Pages from '../../show/pages';
 
-// const Calendar = {
-//   element: Pages.Calendar,
-//   path: Paths.CALENDAR_PATH
-// };
-
 const Home = {
   element: Pages.Home,
   path: Paths.HOME_PATH
