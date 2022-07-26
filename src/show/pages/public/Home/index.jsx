@@ -25,15 +25,27 @@ const Home = () => {
 
   return (
     <div className='flex flex-col w-full h-full '>
-      <UpcomingEvent event={event} />
+      {event ? (
+        <UpcomingEvent event={event} />
+      ) : (
+        <div className='flex h-44 bg-charade justify-center text-secondary text-2xl items-center'>
+          No Event yet
+        </div>
+      )}
       <div className='flex flex-col bg-white h-60 overflow-x-auto'>
         <div className='flex ml-5 mt-3 text-black text-2xl font-bold antialiased'>
           Constructors
         </div>
         <div className='flex ml-5 mt-3 flex-row'>
-          {constructors?.map(constructor => (
-            <ConstructorCard key={constructor.id} constructor={constructor} />
-          ))}
+          {constructors.length > 0 ? (
+            constructors?.map(constructor => (
+              <ConstructorCard key={constructor.id} constructor={constructor} />
+            ))
+          ) : (
+            <div className='flex h-44 w-full justify-center text-secondary text-2xl items-center'>
+              No Constructor yet
+            </div>
+          )}
         </div>
       </div>
       <div className='flex flex-col bg-primary overflow-x-auto'>
@@ -41,14 +53,20 @@ const Home = () => {
           Drivers
         </div>
         <div className='flex mt-3 mb-10 flex-row'>
-          {constructors?.map(constructor => (
-            <DriverCard
-              key={constructor.id}
-              firstDriver={constructor.drivers[0]}
-              secondDriver={constructor.drivers[1]}
-              carUrl={constructor.car_url}
-            />
-          ))}
+          {constructors.length > 0 ? (
+            constructors?.map(constructor => (
+              <DriverCard
+                key={constructor.id}
+                firstDriver={constructor.drivers[0]}
+                secondDriver={constructor.drivers[1]}
+                carUrl={constructor.car_url}
+              />
+            ))
+          ) : (
+            <div className='flex h-44 w-full justify-center text-secondary text-2xl items-center'>
+              No Driver yet
+            </div>
+          )}
         </div>
       </div>
     </div>

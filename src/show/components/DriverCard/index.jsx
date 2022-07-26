@@ -7,16 +7,16 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
             <div className='flex flex-col text-white hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all'>
               <div className='flex flex-col'>
                 <img
-                  src={firstDriver.avatar_url}
-                  alt={firstDriver.first_name}
+                  src={firstDriver?.avatar_url}
+                  alt={firstDriver?.first_name}
                   className='w-24 ml-2'
                 />
                 <div className='flex flex-row'>
                   <div className='flex text-sm font-bold'>
-                    {firstDriver.first_name}
+                    {firstDriver?.first_name}
                   </div>
                   <div className='flex text-sm ml-2 font-bold'>
-                    {firstDriver.last_name}
+                    {firstDriver?.last_name}
                   </div>
                 </div>
               </div>
@@ -25,16 +25,16 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
           <div className='flex flex-col ml-10 text-white hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all'>
             <div className='flex flex-col'>
               <img
-                src={secondDriver.avatar_url}
-                alt={secondDriver.first_name}
+                src={secondDriver?.avatar_url}
+                alt={secondDriver?.first_name}
                 className='w-24 ml-2'
               />
               <div className='flex flex-row justify-center'>
                 <div className='flex text-sm  font-bold'>
-                  {secondDriver.first_name}
+                  {secondDriver?.first_name}
                 </div>
                 <div className='flex text-sm ml-2 font-bold'>
-                  {secondDriver.last_name}
+                  {secondDriver?.last_name}
                 </div>
               </div>
             </div>

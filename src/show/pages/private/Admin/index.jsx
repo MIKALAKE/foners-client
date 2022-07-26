@@ -53,20 +53,20 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/v1/constructors')
+      .get(`http://localhost:3000/v1/constructors?search=${search}`)
       .then(res => setConstructors(res.data))
       .catch(err => err);
 
     axios
-      .get('http://localhost:3000/v1/drivers')
-      .then(res => setDrivers(res.data))
+      .get(`http://localhost:3000/v1/events?search=${search}`)
+      .then(res => setEvents(res.data))
       .catch(err => err);
 
     axios
-      .get('http://localhost:3000/v1/events')
-      .then(res => setEvents(res.data))
+      .get(`http://localhost:3000/v1/drivers?search=${search}`)
+      .then(res => setDrivers(res.data))
       .catch(err => err);
-  }, []);
+  }, [search]);
 
   return (
     <Fragment>
@@ -81,26 +81,18 @@ const Admin = () => {
               className='flex bg-white w-96 ml-5 rounded-lg h-8 text-secondary font-bold hover:outline outline-secondary outline-2'
               onChange={e => setSearch(e.target.value)}
             />
-            <select
-              className='flex bg-white w-1/3 h-8 rounded-full text-charade font-bold items-center justify-center ml-5 hover:outline outline-secondary outline-2'
-              name='filter'>
-              <option value='All'> All</option>
-              <option value='Drivers'>Drivers</option>
-              <option value='Constructors'>Constructors</option>
-              <option value='Events'>Events</option>
-            </select>
             <Button
-              label='+ Create Driver'
-              variant='primary'
-              onClick={() => setCreateDriverModal(true)}
-            />
-            <Button
-              label='+ Create Constructor'
+              label='+ Constructor'
               variant='primary'
               onClick={() => setCreateConstructorModal(true)}
             />
             <Button
-              label='+ Create Event'
+              label='+ Driver'
+              variant='primary'
+              onClick={() => setCreateDriverModal(true)}
+            />
+            <Button
+              label='+ Event'
               variant='primary'
               onClick={() => setCreateEventModal(true)}
             />
@@ -321,13 +313,12 @@ const Admin = () => {
                       <div className='flex w-1/5'>Constructor:</div>
                       <div className='w-4/5'>
                         <select
-                          onClick={e => {
-                            console.log(e.target.value);
+                          onChange={e =>
                             setDriver({
                               ...driver,
                               constructor_id: e.target.value
-                            });
-                          }}
+                            })
+                          }
                           className='rounded-md w-full h-8 bg-white-600 text-center outline-secondary outline-offset-4'
                           name='filter'>
                           <option value='null'></option>
