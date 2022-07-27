@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { STANDINGS_PATH } from '../../../process/routes/paths';
-import { HOME_PATH } from '../../../process/routes/paths';
+import { HOME_PATH, STANDINGS_PATH } from '../../../process/routes/paths';
 
 import { GiPodium } from 'react-icons/gi';
 import { BsCalendarFill, BsSpeedometer2 } from 'react-icons/bs';
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   return (
     <div className='flex drop-shadow-xl sticky top-0  bg-secondary w-full h-10 items-center flex-row'>
       <div

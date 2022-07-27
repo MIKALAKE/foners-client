@@ -1,22 +1,31 @@
-import { Fragment, useState } from 'react';
 import axios from 'axios';
+import { Fragment, useState } from 'react';
 
-import Button from '../Button';
-import Modal from '../Modal';
+import { Button, Modal } from '../';
 
 const ConstructorCardAdmin = ({
-  logo_url,
   constructor,
   constructors,
   setConstructors
 }) => {
   const [constructorAdminModal, setConstructorAdminModal] = useState(false);
+
+  const deleteConstructor = () =>
+    axios
+      .delete(`http://localhost:3000/v1/constructors/${constructor.id}`)
+      .then(() => {
+        const filterConstructors = object => constructor.id !== object.id;
+        const filteredConstructors = constructors.filter(filterConstructors);
+        setConstructorAdminModal(false);
+        setConstructors(filteredConstructors);
+      });
+
   return (
     <Fragment>
       <div className='flex flex-col w-72 h-64 my-5 ml-5 cursor-pointer bg-charade rounded-md'>
         <div className='flex flex-col items-center'>
           <img
-            src={logo_url}
+            src={constructor.logo_url}
             alt='Logo'
             className='justify-center w-28 h-28 mt-5'
           />
@@ -29,6 +38,7 @@ const ConstructorCardAdmin = ({
           </div>
         </div>
       </div>
+
       <Modal
         setVisible={setConstructorAdminModal}
         visible={constructorAdminModal}>
@@ -48,20 +58,7 @@ const ConstructorCardAdmin = ({
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() =>
-                      axios
-                        .delete(
-                          `http://localhost:3000/v1/constructors/${constructor.id}`
-                        )
-                        .then(res => {
-                          setConstructorAdminModal(false);
-                          setConstructors(
-                            constructors.filter(
-                              object => constructor.id !== object.id
-                            )
-                          );
-                        })
-                    }
+                    onClick={deleteConstructor}
                   />
                 </div>
               </div>

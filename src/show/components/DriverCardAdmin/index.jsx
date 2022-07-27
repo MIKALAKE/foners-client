@@ -1,11 +1,16 @@
-import { Fragment, useState } from 'react';
 import axios from 'axios';
+import { Fragment, useState } from 'react';
 
-import Button from '../Button';
-import Modal from '../Modal';
+import { Button, Modal } from '../';
 
 const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);
+
+  const deleteDriver = () =>
+    axios.delete(`http://localhost:3000/v1/drivers/${driver.id}`).then(res => {
+      setDriverAdminModal(false);
+      setDrivers(drivers.filter(item => driver.id !== item.id));
+    });
 
   return (
     <Fragment>
@@ -25,6 +30,7 @@ const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
           </div>
         </div>
       </div>
+
       <Modal setVisible={setDriverAdminModal} visible={driverAdminModal}>
         <div className='min-h-full flex items-center justify-center py-12 px-6'>
           <div className='max-w-md w-full space-y-8'>
@@ -42,16 +48,7 @@ const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() =>
-                      axios
-                        .delete(`http://localhost:3000/v1/drivers/${driver.id}`)
-                        .then(res => {
-                          setDriverAdminModal(false);
-                          setDrivers(
-                            drivers.filter(item => driver.id !== item.id)
-                          );
-                        })
-                    }
+                    onClick={deleteDriver}
                   />
                 </div>
               </div>

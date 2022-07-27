@@ -1,6 +1,10 @@
 import * as Paths from './paths.js';
 import Pages from '../../show/pages';
 
+const Admin = {
+  element: Pages.Admin,
+  path: Paths.ADMIN_PATH
+};
 const Home = {
   element: Pages.Home,
   path: Paths.HOME_PATH
@@ -11,11 +15,6 @@ const Standings = {
   path: Paths.STANDINGS_PATH
 };
 
-const Admin = {
-  element: Pages.Admin,
-  path: Paths.ADMIN_PATH
-};
-
-const routes = [Home, Standings, Admin];
+const routes = [Admin, Home, Standings];
 
 export default routes;

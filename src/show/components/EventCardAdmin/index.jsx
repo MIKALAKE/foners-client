@@ -1,11 +1,16 @@
-import { Fragment, useState } from 'react';
 import axios from 'axios';
+import { Fragment, useState } from 'react';
 
-import Button from '../Button';
-import Modal from '../Modal';
+import { Button, Modal } from '../';
 
 const EventCardAdmin = ({ event, events, setEvents }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
+
+  const deleteEvent = () =>
+    axios.delete(`http://localhost:3000/v1/events/${event.id}`).then(res => {
+      setEventAdminModal(false);
+      setEvents(events.filter(item => event.id !== item.id));
+    });
 
   return (
     <Fragment>
@@ -44,16 +49,7 @@ const EventCardAdmin = ({ event, events, setEvents }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() =>
-                      axios
-                        .delete(`http://localhost:3000/v1/events/${event.id}`)
-                        .then(res => {
-                          setEventAdminModal(false);
-                          setEvents(
-                            events.filter(item => event.id !== item.id)
-                          );
-                        })
-                    }
+                    onClick={deleteEvent}
                   />
                 </div>
               </div>
