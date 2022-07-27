@@ -26,22 +26,22 @@ const TextField = ({
 
 TextField.defaultProps = {
   className: '',
+  label: '',
   onChange: () => {},
   placeholder: '',
   required: false,
   type: '',
-  value: '',
-  label: ''
+  value: ''
 };
 
 TextField.propTypes = {
   className: PropTypes.string,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string,
-  value: PropTypes.string,
-  label: PropTypes.string
+  value: PropTypes.string
 };
 
 export default TextField;

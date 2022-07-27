@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { HOME_PATH, STANDINGS_PATH } from '../../../process/routes/paths';
-
 import { GiPodium } from 'react-icons/gi';
+import { useNavigate } from 'react-router-dom';
 import { BsCalendarFill, BsSpeedometer2 } from 'react-icons/bs';
+
+import { HOME_PATH, STANDINGS_PATH } from '../../../process/routes/paths';
 
 const Navbar = () => {
   const navigate = useNavigate();
