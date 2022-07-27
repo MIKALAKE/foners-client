@@ -1,5 +1,11 @@
 import Home from './public/Home';
-import Events from './public/Events';
+import Admin from './private/Admin';
 import Standings from './public/Standings';
 
-export { Events, Home, Standings };
+const pages = {
+  Admin,
+  Home,
+  Standings
+};
+
+export default pages;
