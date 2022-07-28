@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { Button, ConstructorInfoCard, Modal } from '../';
 
@@ -20,13 +20,6 @@ const ConstructorCardAdmin = ({
         setConstructorAdminModal(false);
         setConstructors(filteredConstructors);
       });
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/constructors/')
-      .then(res => setConstructors(res.data))
-      .catch(err => err);
-  }, [setConstructors]);
 
   return (
     <Fragment>

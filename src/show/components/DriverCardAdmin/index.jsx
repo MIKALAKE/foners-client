@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { Button, DriverInfoCard, Modal } from '../';
 
@@ -12,13 +12,6 @@ const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
       setDriverAdminModal(false);
       setDrivers(drivers.filter(item => driver.id !== item.id));
     });
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/drivers/')
-      .then(res => setDrivers(res.data))
-      .catch(err => err);
-  }, [setDrivers]);
 
   return (
     <Fragment>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { Button, EventInfoCard, Modal } from '../';
 
@@ -12,13 +12,6 @@ const EventCardAdmin = ({ event, events, setEvents }) => {
       setEventAdminModal(false);
       setEvents(events.filter(item => event.id !== item.id));
     });
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/events/')
-      .then(res => setEvents(res.data))
-      .catch(err => err);
-  }, [setEvents]);
 
   return (
     <Fragment>
