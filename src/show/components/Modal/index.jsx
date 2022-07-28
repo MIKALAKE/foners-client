@@ -13,14 +13,14 @@ const Modal = ({ children, setVisible, title, visible }) => {
 
   return (
     visible && (
-      <div className='fixed z-10 inset-0 overflow-y-auto '>
+      <div className='fixed z-10 inset-0 overflow-y-auto'>
         <div className='items-center justify-center min-h-screen text-center block p-0'>
           <div
             className='fixed inset-0 bg-primary bg-opacity-75 transition-opacity'
             onClick={() => setVisible(false)}
           />
           <span className='inline-block align-middle h-screen'>&#8203;</span>
-          <div className='inline-block bg-white-700 text-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 align-middle max-w-lg w-full'>
+          <div className='inline-block bg-white-700 text-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 align-middle max-w-2xl w-full'>
             <div className='flex justify-center p-6 pb-4'>
               <div className='flex flex-col mt-3 text-center justify-center w-full'>
                 {title && (

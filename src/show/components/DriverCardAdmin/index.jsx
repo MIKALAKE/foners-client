@@ -1,16 +1,24 @@
 import axios from 'axios';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
-import { Button, Modal } from '../';
+import { Button, DriverInfoCard, Modal } from '../';
 
 const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);
+  const [editDriverModal, setEditDriverModal] = useState(false);
 
   const deleteDriver = () =>
     axios.delete(`http://localhost:3000/v1/drivers/${driver.id}`).then(res => {
       setDriverAdminModal(false);
       setDrivers(drivers.filter(item => driver.id !== item.id));
     });
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/v1/drivers/')
+      .then(res => setDrivers(res.data))
+      .catch(err => err);
+  }, [setDrivers]);
 
   return (
     <Fragment>
@@ -35,20 +43,50 @@ const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
         <div className='min-h-full flex items-center justify-center py-12 px-6'>
           <div className='max-w-md w-full space-y-8'>
             <div className='flex flex-col justify-center items-center'>
-              <h2 className='mt-2 text-center text-3xl font-extrabold text-gray-900'>
-                Driver Name
+              <h2 className='text-center text-3xl font-extrabold text-charade'>
+                {driver.first_name} {driver.last_name}
               </h2>
             </div>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'></div>
-
+              <div className='rounded-md space-y-px'>
+                <DriverInfoCard key={driver.id} driver={driver} />
+              </div>
               <div className='flex items-center justify-between w-full'>
                 <div className='flex w-full flex-row'>
-                  <Button variant='secondary' label='Edit' />
+                  <Button
+                    variant='secondary'
+                    label='Edit'
+                    onClick={() => setEditDriverModal(true)}
+                  />
                   <Button
                     variant='primary'
                     label='Delete'
                     onClick={deleteDriver}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal setVisible={setEditDriverModal} visible={editDriverModal}>
+        <div className='min-h-full flex items-center justify-center py-12 px-6'>
+          <div className='max-w-md w-full space-y-8'>
+            <div className='flex flex-col justify-center items-center'>
+              <h2 className='mt-2 text-center text-3xl font-extrabold text-charade'>
+                Edit Driver
+              </h2>
+            </div>
+            <div className='flex mt-8 space-y-6'>
+              <div className='rounded-md space-y-px'></div>
+              <div className='flex items-cente justify-between w-full'>
+                <div className='flex w-full flex-row '>
+                  <Button variant='secondary' label='Save' />
+                  <Button
+                    variant='primary'
+                    label='Cancel'
+                    onClick={() => setEditDriverModal(false)}
                   />
                 </div>
               </div>

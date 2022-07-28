@@ -1,16 +1,24 @@
 import axios from 'axios';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
-import { Button, Modal } from '../';
+import { Button, EventInfoCard, Modal } from '../';
 
 const EventCardAdmin = ({ event, events, setEvents }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
+  const [editEventModal, setEditEventModal] = useState(false);
 
   const deleteEvent = () =>
     axios.delete(`http://localhost:3000/v1/events/${event.id}`).then(res => {
       setEventAdminModal(false);
       setEvents(events.filter(item => event.id !== item.id));
     });
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/v1/events/')
+      .then(res => setEvents(res.data))
+      .catch(err => err);
+  }, [setEvents]);
 
   return (
     <Fragment>
@@ -36,20 +44,50 @@ const EventCardAdmin = ({ event, events, setEvents }) => {
         <div className='min-h-full flex items-center justify-center py-12 px-6'>
           <div className='max-w-md w-full space-y-8'>
             <div className='flex flex-col justify-center items-center'>
-              <h2 className='mt-2 text-center text-3xl font-extrabold text-gray-900'>
-                Event Name
+              <h2 className='text-center text-3xl font-extrabold text-charade'>
+                {event.name}
               </h2>
             </div>
             <div className='mt-8 space-y-6'>
-              <div className='rounded-md shadow-sm -space-y-px'></div>
-
+              <div className='rounded-md space-y-px'>
+                <EventInfoCard key={event.id} event={event} />
+              </div>
               <div className='flex items-center justify-between w-full'>
                 <div className='flex w-full flex-row'>
-                  <Button variant='secondary' label='Edit' />
+                  <Button
+                    variant='secondary'
+                    label='Edit'
+                    onClick={setEditEventModal}
+                  />
                   <Button
                     variant='primary'
                     label='Delete'
                     onClick={deleteEvent}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal setVisible={setEditEventModal} visible={editEventModal}>
+        <div className='min-h-full flex items-center justify-center py-12 px-6'>
+          <div className='max-w-md w-full space-y-8'>
+            <div className='flex flex-col justify-center items-center'>
+              <h2 className='mt-2 text-center text-3xl font-extrabold text-charade'>
+                Edit Event
+              </h2>
+            </div>
+            <div className='flex mt-8 space-y-6'>
+              <div className='rounded-md pace-y-px'></div>
+              <div className='flex items-cente justify-between w-full'>
+                <div className='flex w-full flex-row '>
+                  <Button variant='secondary' label='Save' />
+                  <Button
+                    variant='primary'
+                    label='Cancel'
+                    onClick={() => setEditEventModal(false)}
                   />
                 </div>
               </div>
