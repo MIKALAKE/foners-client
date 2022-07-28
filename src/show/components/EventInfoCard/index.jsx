@@ -3,9 +3,9 @@ import Moment from 'react-moment';
 const EventInfoCard = ({ event }) => {
   return (
     <div className='flex justify-center'>
-      <div className='flex w-full h-full items-center flex-col'>
-        <div className='flex w-44 h-44 items-center'>
-          <div className='flex'>
+      <div className='flex w-full h-full items-start flex-col'>
+        <div className='flex w-full h-full justify-center'>
+          <div className='flex w-44 h-44 '>
             <img src={event?.cover_url} alt={event?.name} />
           </div>
         </div>
