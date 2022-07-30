@@ -1,17 +1,28 @@
 import axios from 'axios';
 import { Fragment, useState } from 'react';
 
-import { Button, EventInfoCard, Modal } from '../';
+import { Button, EventInfoCard, Modal, TextField } from '../';
 
 const EventCardAdmin = ({ event, events, setEvents }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
   const [editEventModal, setEditEventModal] = useState(false);
+  const [editedEvent, setEditedEvent] = useState(event);
 
   const deleteEvent = () =>
     axios.delete(`http://localhost:3000/v1/events/${event.id}`).then(res => {
       setEventAdminModal(false);
       setEvents(events.filter(item => event.id !== item.id));
     });
+  const updateEvent = () =>
+    axios
+      .put(`http://localhost:3000/v1/events/${event.id}`, editedEvent)
+      .then(res => {
+        setEditEventModal(false);
+        const newEvents = [...events];
+        const index = newEvents.findIndex(event => event.id === res.data.id);
+        newEvents[index] = res.data;
+        setEvents(newEvents);
+      });
 
   return (
     <Fragment>
@@ -72,11 +83,102 @@ const EventCardAdmin = ({ event, events, setEvents }) => {
                 Edit Event
               </h2>
             </div>
-            <div className='flex mt-8 space-y-6'>
-              <div className='rounded-md pace-y-px'></div>
+            <div className='flex mt-8 flex-col justify-center space-y-6'>
+              <div className='rounded-md pace-y-px'>
+                <div className='flex flex-col w-full space-y-5 justify-between'>
+                  <div>
+                    <TextField
+                      label='Name:'
+                      type='text'
+                      placeholder='Name'
+                      value={editedEvent.name}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          name: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='City:'
+                      type='text'
+                      placeholder='City'
+                      value={editedEvent.city}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          city: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Cover:'
+                      type='url'
+                      placeholder='Cover URL'
+                      value={editedEvent.cover_url}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          cover_url: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Descritpion:'
+                      type='text'
+                      placeholder='Descritpion'
+                      value={editedEvent.description}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          description: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Country:'
+                      type='text'
+                      placeholder='Country'
+                      value={editedEvent.country}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          country: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Date:'
+                      type='date'
+                      placeholder='Date'
+                      value={editedEvent.date}
+                      onChange={e =>
+                        setEditedEvent({
+                          ...editedEvent,
+                          date: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
               <div className='flex items-cente justify-between w-full'>
                 <div className='flex w-full flex-row '>
-                  <Button variant='secondary' label='Save' />
+                  <Button
+                    variant='secondary'
+                    label='Save'
+                    onClick={updateEvent}
+                  />
                   <Button
                     variant='primary'
                     label='Cancel'
