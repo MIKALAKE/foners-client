@@ -1,17 +1,29 @@
 import axios from 'axios';
 import { Fragment, useState } from 'react';
 
-import { Button, DriverInfoCard, Modal } from '../';
+import { Button, DriverInfoCard, Modal, TextField } from '../';
 
 const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);
   const [editDriverModal, setEditDriverModal] = useState(false);
+  const [editedDriver, setEditedDriver] = useState(driver);
 
   const deleteDriver = () =>
-    axios.delete(`http://localhost:3000/v1/drivers/${driver.id}`).then(res => {
+    axios.delete(`http://localhost:3000/v1/drivers/${driver.id}`).then(() => {
       setDriverAdminModal(false);
       setDrivers(drivers.filter(item => driver.id !== item.id));
     });
+
+  const updateDriver = () =>
+    axios
+      .put(`http://localhost:3000/v1/drivers/${driver.id}`, editedDriver)
+      .then(res => {
+        setEditDriverModal(false);
+        const newDrivers = [...drivers];
+        const index = newDrivers.findIndex(driver => driver.id === res.data.id);
+        newDrivers[index] = res.data;
+        setDrivers(newDrivers);
+      });
 
   return (
     <Fragment>
@@ -71,11 +83,156 @@ const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
                 Edit Driver
               </h2>
             </div>
-            <div className='flex mt-8 space-y-6'>
-              <div className='rounded-md space-y-px'></div>
+            <div className='flex mt-8 flex-col justify-center space-y-6'>
+              <div className='flex flex-col w-full space-y-5'>
+                <div>
+                  <TextField
+                    label='First Name:'
+                    type='text'
+                    placeholder='First Name'
+                    value={editedDriver?.first_name}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        first_name: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Last Name:'
+                    type='text'
+                    placeholder='Last Name'
+                    value={editedDriver?.last_name}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        last_name: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Nickname:'
+                    type='text'
+                    placeholder='Nickname'
+                    value={editedDriver?.nickname}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        nickname: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Race Number:'
+                    type='number'
+                    placeholder='Race Number'
+                    value={editedDriver?.race_number}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        race_number: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Avatar:'
+                    type='url'
+                    placeholder='Avatar URL'
+                    value={editedDriver?.avatar_url}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        avatar_url: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Birth Date:'
+                    type='date'
+                    placeholder='Birth Date'
+                    value={editedDriver?.birth_date}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        birth_date: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Height:'
+                    type='number'
+                    placeholder='Height'
+                    value={editedDriver?.height}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        height: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Nationality:'
+                    type='text'
+                    placeholder='Nationality'
+                    value={editedDriver?.nationality}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        nationality: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Description:'
+                    type='text'
+                    placeholder='Description'
+                    value={editedDriver?.description}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        description: e.target.value
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label='Points:'
+                    type='number'
+                    placeholder='Points'
+                    value={editedDriver?.points}
+                    onChange={e =>
+                      setEditedDriver({
+                        ...editedDriver,
+                        points: e.target.value
+                      })
+                    }
+                  />
+                </div>
+              </div>
               <div className='flex items-cente justify-between w-full'>
                 <div className='flex w-full flex-row '>
-                  <Button variant='secondary' label='Save' />
+                  <Button
+                    variant='secondary'
+                    label='Save'
+                    onClick={updateDriver}
+                  />
                   <Button
                     variant='primary'
                     label='Cancel'

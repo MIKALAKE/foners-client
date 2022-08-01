@@ -75,18 +75,15 @@ const Admin = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:3000/v1/constructors?search=${search}`)
-      .then(res => setConstructors(res.data))
-      .catch(err => err);
+      .then(res => setConstructors(res.data));
 
     axios
       .get(`http://localhost:3000/v1/events?search=${search}`)
-      .then(res => setEvents(res.data))
-      .catch(err => err);
+      .then(res => setEvents(res.data));
 
     axios
       .get(`http://localhost:3000/v1/drivers?search=${search}`)
-      .then(res => setDrivers(res.data))
-      .catch(err => err);
+      .then(res => setDrivers(res.data));
   }, [search]);
 
   return (

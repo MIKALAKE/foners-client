@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Fragment, useState } from 'react';
 
-import { Button, ConstructorInfoCard, Modal } from '../';
+import { Button, ConstructorInfoCard, Modal, TextField } from '../';
 
 const ConstructorCardAdmin = ({
   constructor,
@@ -10,6 +10,7 @@ const ConstructorCardAdmin = ({
 }) => {
   const [editConstructorModal, setEditConstructorModal] = useState(false);
   const [constructorAdminModal, setConstructorAdminModal] = useState(false);
+  const [editedConstructor, setEditedConstructor] = useState(constructor);
 
   const deleteConstructor = () =>
     axios
@@ -19,6 +20,21 @@ const ConstructorCardAdmin = ({
         const filteredConstructors = constructors.filter(filterConstructors);
         setConstructorAdminModal(false);
         setConstructors(filteredConstructors);
+      });
+  const updateConstructor = () =>
+    axios
+      .put(
+        `http://localhost:3000/v1/constructors/${constructor.id}`,
+        editedConstructor
+      )
+      .then(res => {
+        setEditConstructorModal(false);
+        const newConstructors = [...constructors];
+        const index = newConstructors.findIndex(
+          constructor => constructor.id === res.data.id
+        );
+        newConstructors[index] = res.data;
+        setConstructors(newConstructors);
       });
 
   return (
@@ -86,11 +102,144 @@ const ConstructorCardAdmin = ({
                 Edit Constructor
               </h2>
             </div>
-            <div className='flex mt-8 space-y-6'>
-              <div className='rounded-md space-y-px'></div>
+            <div className='flex mt-8 flex-col justify-center space-y-6'>
+              <div className='rounded-md space-y-px'>
+                <div className='flex flex-col w-full space-y-5 justify-between'>
+                  <div>
+                    <TextField
+                      label='Name:'
+                      type='text'
+                      placeholder='Name'
+                      value={editedConstructor.name}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          name: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Logo:'
+                      type='url'
+                      placeholder='Logo URL'
+                      value={editedConstructor.logo_url}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          logo_url: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Cover:'
+                      type='url'
+                      placeholder='Cover URL'
+                      value={editedConstructor.cover_url}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          cover_url: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Description:'
+                      type='text'
+                      placeholder='Description'
+                      value={editedConstructor.description}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          description: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='First Apparence:'
+                      type='number'
+                      placeholder='First Apparence'
+                      value={editedConstructor.first_apparence}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          first_apparence: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Origins:'
+                      type='text'
+                      placeholder='Origins'
+                      value={editedConstructor.origins}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          origins: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Titles:'
+                      type='number'
+                      placeholder='Titles'
+                      value={editedConstructor.titles}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          titles: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Car Pictures:'
+                      type='url'
+                      placeholder='Car Picture URL'
+                      value={editedConstructor.car_url}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          car_url: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      label='Points:'
+                      type='number'
+                      placeholder='Points'
+                      value={editedConstructor.points}
+                      onChange={e =>
+                        setEditedConstructor({
+                          ...editedConstructor,
+                          points: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
               <div className='flex items-cente justify-between w-full'>
                 <div className='flex w-full flex-row '>
-                  <Button variant='secondary' label='Save' />
+                  <Button
+                    variant='secondary'
+                    label='Save'
+                    onClick={updateConstructor}
+                  />
                   <Button
                     variant='primary'
                     label='Cancel'

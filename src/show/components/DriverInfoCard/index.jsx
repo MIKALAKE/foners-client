@@ -3,9 +3,9 @@ import Moment from 'react-moment';
 const DriverInfoCard = ({ driver }) => {
   return (
     <div className='flex justify-center'>
-      <div className='flex w-full h-full items-start flex-col'>
-        <div className='flex w-full h-full justify-center'>
-          <div className='flex w-44 h-44'>
+      <div className='flex w-full h-full items-center flex-col'>
+        <div className='flex w-44 h-44 items-center'>
+          <div className='flex'>
             <img src={driver?.avatar_url} alt={driver?.name} />
           </div>
         </div>
@@ -33,7 +33,7 @@ const DriverInfoCard = ({ driver }) => {
           <div className='flex text-lg font-bold mr-2'>Height:</div>
           <div className='flex'>{driver?.height}</div>
         </div>
-        <div className='flex flex-row items-center'>
+        <div className='flex flex-col items-center'>
           <div className='flex text-lg font-bold mr-2'>Points:</div>
           <div className='flex text-xl font-semibold text-secondary'>
             {driver?.points}
