@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   ConstructorCard,
   DriverCard,
   UpcomingEvent
 } from '../../../components';
+import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
   const [event, setEvent] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -24,7 +28,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='flex flex-col w-full h-full '>
+    <div className='flex flex-col w-full h-full'>
       {event ? (
         <UpcomingEvent event={event} />
       ) : (
@@ -39,7 +43,13 @@ const Home = () => {
         <div className='flex ml-5 mt-3 flex-row'>
           {constructors.length > 0 ? (
             constructors?.map(constructor => (
-              <ConstructorCard key={constructor.id} constructor={constructor} />
+              <div
+                onClick={() =>
+                  navigate(CONSTRUCTOR_PATH.replace(':id', constructor.id))
+                }
+                key={constructor.id}>
+                <ConstructorCard constructor={constructor} />
+              </div>
             ))
           ) : (
             <div className='flex h-44 w-full justify-center text-secondary text-2xl items-center'>
