@@ -4,28 +4,28 @@ import { useParams } from 'react-router-dom';
 
 const Constructor = () => {
   const { id } = useParams();
-  const [getConstructorData, setGetConstructorData] = useState({});
+  const [constructor, setConstructor] = useState({});
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/v1/constructors/${id}`)
-      .then(res => setGetConstructorData(res.data))
+      .then(res => setConstructor(res.data))
       .catch(err => err);
   }, [id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
-      {getConstructorData && (
+      {constructor && (
         <div className='flex flex-col'>
           <div className='flex flex-row'>
             <img
               className='w-44 h-44 mx-5 my-5'
-              src={getConstructorData.logo_url}
-              alt={getConstructorData.name}
+              src={constructor.logo_url}
+              alt={constructor.name}
             />
             <div className='flex mt-10 justify-center w-full'>
               <div className='text-5xl font-extrabold mr-44 text-charade'>
-                {getConstructorData.name}
+                {constructor.name}
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@ const Constructor = () => {
               Description:
             </div>
             <div className='text-1xl font-extrabold ml-10 text-charade'>
-              {getConstructorData.description}
+              {constructor.description}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -42,7 +42,7 @@ const Constructor = () => {
               Origins:
             </div>
             <div className='text-2xl font-bold ml-5 text-charade'>
-              {getConstructorData.origins}
+              {constructor.origins}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -50,7 +50,7 @@ const Constructor = () => {
               First Apparence:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {getConstructorData.first_apparence}
+              {constructor.first_apparence}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -58,7 +58,7 @@ const Constructor = () => {
               Titles:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {getConstructorData.titles}
+              {constructor.titles}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -66,14 +66,14 @@ const Constructor = () => {
               Points this season:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-secondary'>
-              {getConstructorData.points}
+              {constructor.points}
             </div>
           </div>
           <div className='flex mt-10 justify-center w-full'>
             <img
               className='w-96 h-25 justify-center'
-              src={getConstructorData.car_url}
-              alt={getConstructorData.name}
+              src={constructor.car_url}
+              alt={constructor.name}
             />
           </div>
         </div>

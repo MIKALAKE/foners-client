@@ -12,6 +12,7 @@ import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
   const [event, setEvent] = useState({});
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Home = () => {
       .catch(err => err);
 
     axios
-      .get(`http://localhost:3000/v1/constructors/`)
+      .get('http://localhost:3000/v1/constructors/')
       .then(res => setConstructors(res.data))
       .catch(err => err);
   }, []);
@@ -47,10 +48,7 @@ const Home = () => {
                   navigate(CONSTRUCTOR_PATH.replace(':id', constructor.id))
                 }
                 key={constructor.id}>
-                <ConstructorCard
-                  key={constructor.id}
-                  constructor={constructor}
-                />
+                <ConstructorCard constructor={constructor} />
               </div>
             ))
           ) : (

@@ -1,33 +1,32 @@
 import axios from 'axios';
+import Moment from 'react-moment';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Moment from 'react-moment';
-
 const Driver = () => {
   const { id } = useParams();
-  const [getDriverData, setGetDriverData] = useState({});
+  const [driver, setDriver] = useState({});
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/v1/drivers/${id}`)
-      .then(res => setGetDriverData(res.data))
+      .then(res => setDriver(res.data))
       .catch(err => err);
   }, [id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
-      {getDriverData && (
+      {driver && (
         <div className='flex flex-col'>
           <div className='flex flex-row'>
             <img
               className='w-44 h-44 mx-5 my-5'
-              src={getDriverData.avatar_url}
-              alt={getDriverData.first_name}
+              src={driver.avatar_url}
+              alt={driver.first_name}
             />
             <div className='flex mt-10 justify-center w-full'>
               <div className='text-5xl font-extrabold mr-44 text-charade'>
-                {getDriverData.first_name} {getDriverData.last_name}
+                {driver.first_name} {driver.last_name}
               </div>
             </div>
           </div>
@@ -36,7 +35,7 @@ const Driver = () => {
               Description:
             </div>
             <div className='text-1xl font-extrabold ml-10 text-charade'>
-              {getDriverData.description}
+              {driver.description}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -44,7 +43,7 @@ const Driver = () => {
               Nickname:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {getDriverData.nickname}
+              {driver.nickname}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -52,7 +51,7 @@ const Driver = () => {
               Race Number:
             </div>
             <div className='text-2xl font-bold ml-5 text-charade'>
-              #{getDriverData.race_number}
+              #{driver.race_number}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -60,7 +59,7 @@ const Driver = () => {
               Day of Birth:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              <Moment format='DD-MM-Y'>{getDriverData.birth_date}</Moment>
+              <Moment format='DD-MM-Y'>{driver.birth_date}</Moment>
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -68,7 +67,7 @@ const Driver = () => {
               Nationality:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {getDriverData.nationality}
+              {driver.nationality}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -76,7 +75,7 @@ const Driver = () => {
               Height:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {getDriverData.height}
+              {driver.height}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -84,7 +83,7 @@ const Driver = () => {
               Points this season:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-secondary'>
-              {getDriverData.points}
+              {driver.points}
             </div>
           </div>
         </div>
