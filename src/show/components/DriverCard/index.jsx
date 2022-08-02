@@ -1,4 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
+import { DRIVER_PATH } from '../../../process/routes/paths';
+
 const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col w-72 h-64 my-5 ml-5 cursor-pointer bg-charade rounded-md hover:bg-white-700 shadow-xl transition-all delay-200 ease-in-out'>
       <div className='flex flex-col items-center'>
@@ -7,6 +12,9 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
             <div className='flex flex-col text-white hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all'>
               <div className='flex flex-col'>
                 <img
+                  onClick={() =>
+                    navigate(DRIVER_PATH.replace(':id', firstDriver?.id))
+                  }
                   src={firstDriver?.avatar_url}
                   alt={firstDriver?.first_name}
                   className='w-24 ml-2'
@@ -25,6 +33,9 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
           <div className='flex flex-col ml-10 text-white hover:text-secondary hover:scale-110 delay-100 easy-in-out transition-all'>
             <div className='flex flex-col'>
               <img
+                onClick={() =>
+                  navigate(DRIVER_PATH.replace(':id', secondDriver?.id))
+                }
                 src={secondDriver?.avatar_url}
                 alt={secondDriver?.first_name}
                 className='w-24 ml-2'
