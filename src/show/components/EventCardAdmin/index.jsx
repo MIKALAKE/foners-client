@@ -1,28 +1,22 @@
-import axios from 'axios';
 import { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Button, EventInfoCard, Modal, TextField } from '../';
+import { deleteEventAsync, editEventAsync } from '../../../redux/eventSlice';
 
-const EventCardAdmin = ({ event, events, setEvents }) => {
+const EventCardAdmin = ({ event }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
   const [editEventModal, setEditEventModal] = useState(false);
   const [editedEvent, setEditedEvent] = useState(event);
+  const dispatch = useDispatch();
 
-  const deleteEvent = () =>
-    axios.delete(`http://localhost:3000/v1/events/${event.id}`).then(res => {
-      setEventAdminModal(false);
-      setEvents(events.filter(item => event.id !== item.id));
-    });
-  const updateEvent = () =>
-    axios
-      .put(`http://localhost:3000/v1/events/${event.id}`, editedEvent)
-      .then(res => {
-        setEditEventModal(false);
-        const newEvents = [...events];
-        const index = newEvents.findIndex(event => event.id === res.data.id);
-        newEvents[index] = res.data;
-        setEvents(newEvents);
-      });
+  const updateEvent = () => {
+    dispatch(editEventAsync(editedEvent));
+    setEditEventModal(false);
+  };
+  const deleteEvent = () => {
+    dispatch(deleteEventAsync({ id: event.id }));
+  };
 
   return (
     <Fragment>
