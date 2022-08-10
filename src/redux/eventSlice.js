@@ -93,7 +93,7 @@ export const eventSlice = createSlice({
       const newEvents = [...state.events];
       const find = event => event.id === payload.id;
       const index = newEvents.findIndex(find);
-      newEvents[index] = action.payload;
+      newEvents[index] = payload;
       return { ...state, events: newEvents };
     }
   }
