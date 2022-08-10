@@ -1,31 +1,34 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   ConstructorCard,
   DriverCard,
   UpcomingEvent
 } from '../../../components';
+import { getEventAsync } from '../../../../redux/eventsSlice';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
-  const [event, setEvent] = useState({});
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/events/does-not-matter')
-      .then(res => setEvent(res.data))
-      .catch(err => err);
-
     axios
       .get('http://localhost:3000/v1/constructors/')
       .then(res => setConstructors(res.data))
       .catch(err => err);
   }, []);
+
+  useEffect(() => {
+    dispatch(getEventAsync());
+  }, [dispatch]);
+
+  const event = useSelector(state => state.events.event);
 
   return (
     <div className='flex flex-col w-full h-full'>

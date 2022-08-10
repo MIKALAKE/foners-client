@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Button,
@@ -9,6 +10,7 @@ import {
   Modal,
   TextField
 } from '../../../components';
+import { addEventAsync, getEventsAsync } from '../../../../redux/eventsSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -17,7 +19,6 @@ const Admin = () => {
   const [constructors, setConstructors] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState('');
-  const [events, setEvents] = useState([]);
   const [driver, setDriver] = useState({
     constructor_id: null,
     first_name: '',
@@ -50,6 +51,11 @@ const Admin = () => {
     country: '',
     date: ''
   });
+
+  const dispatch = useDispatch();
+
+  const events = useSelector(state => state.events.events);
+
   const postDriver = () => {
     axios.post('http://localhost:3000/v1/drivers', driver).then(res => {
       setDrivers([...drivers, res.data]);
@@ -64,12 +70,11 @@ const Admin = () => {
         setCreateConstructorModal(false);
       });
   };
-  const postEvent = () => {
-    setEvent(event);
-    axios.post('http://localhost:3000/v1/events', event).then(res => {
-      setEvents([...events, res.data]);
-      setCreateEventModal(false);
-    });
+
+  const postEvent = e => {
+    e.preventDefault();
+    dispatch(addEventAsync(event));
+    setCreateEventModal(false);
   };
 
   useEffect(() => {
@@ -78,13 +83,13 @@ const Admin = () => {
       .then(res => setConstructors(res.data));
 
     axios
-      .get(`http://localhost:3000/v1/events?search=${search}`)
-      .then(res => setEvents(res.data));
-
-    axios
       .get(`http://localhost:3000/v1/drivers?search=${search}`)
       .then(res => setDrivers(res.data));
   }, [search]);
+
+  useEffect(() => {
+    dispatch(getEventsAsync());
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -149,13 +154,12 @@ const Admin = () => {
                 </div>
               )}
 
-              {events.length > 0 ? (
+              {events?.length > 0 ? (
                 events?.map(event => (
                   <EventCardAdmin
                     key={event.id}
                     event={event}
                     events={events}
-                    setEvents={setEvents}
                   />
                 ))
               ) : (
