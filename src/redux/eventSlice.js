@@ -5,18 +5,19 @@ export const getEventAsync = createAsyncThunk(
   async () => {
     const resp = await fetch('http://localhost:3000/v1/events/upcoming');
     if (resp.ok) {
-      const event = await resp.json();
-      return { event };
+      const json = await resp.json();
+      return json;
     }
   }
 );
+
 export const getEventsAsync = createAsyncThunk(
   'events/getEventsAsync',
   async () => {
     const resp = await fetch('http://localhost:3000/v1/events');
     if (resp.ok) {
-      const event = await resp.json();
-      return { event };
+      const json = await resp.json();
+      return json;
     }
   }
 );
@@ -35,7 +36,7 @@ export const deleteEventAsync = createAsyncThunk(
 );
 
 export const addEventAsync = createAsyncThunk(
-  'events/addEventAsync',
+  'event/addEventAsync',
   async payload => {
     const resp = await fetch('http://localhost:3000/v1/events', {
       method: 'POST',
@@ -46,8 +47,8 @@ export const addEventAsync = createAsyncThunk(
     });
 
     if (resp.ok) {
-      const event = await resp.json();
-      return { event };
+      const json = await resp.json();
+      return json;
     }
   }
 );
@@ -64,8 +65,8 @@ export const editEventAsync = createAsyncThunk(
     });
 
     if (resp.ok) {
-      const event = await resp.json();
-      return { event };
+      const json = await resp.json();
+      return json;
     }
   }
 );
@@ -73,42 +74,32 @@ export const editEventAsync = createAsyncThunk(
 export const eventSlice = createSlice({
   name: 'event',
   initialState: { event: {}, events: [] },
-  reducers: {
-    deleteEvent: (state, action) => {
-      return state.events.filter(event => event.id !== action.payload.id);
-    }
-  },
   extraReducers: {
-    [getEventsAsync.fulfilled]: (state, action) => {
-      return { ...state, events: action.payload.event };
+    [getEventsAsync.fulfilled]: (state, { payload }) => {
+      return { ...state, events: payload };
     },
-    [addEventAsync.fulfilled]: (state, action) => {
-      return { ...state, events: [...state.events, action.payload.event] };
+    [addEventAsync.fulfilled]: (state, { payload }) => {
+      return { ...state, events: [...state.events, payload] };
     },
-    [getEventAsync.fulfilled]: (state, action) => {
-      return { ...state, event: action.payload.event };
+    [getEventAsync.fulfilled]: (state, { payload }) => {
+      return { ...state, event: payload };
     },
-    [deleteEventAsync.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        events: state.events.filter(event => event.id !== action.payload.id)
-      };
+    [deleteEventAsync.fulfilled]: (state, { payload }) => {
+      const filter = event => event.id !== payload.id;
+      const filteredEvents = state.events.filter(filter);
+      return { ...state, events: filteredEvents };
     },
-    [editEventAsync.fulfilled]: (state, action) => {
+    [editEventAsync.fulfilled]: (state, { payload }) => {
       const newEvents = [...state.events];
-      const index = newEvents.findIndex(
-        event => event.id === action.payload.id
-      );
-      newEvents[index] = action.payload.event;
-      return {
-        ...state,
-        events: newEvents
-      };
+      const find = event => event.id === payload.id;
+      const index = newEvents.findIndex(find);
+      newEvents[index] = action.payload;
+      return { ...state, events: newEvents };
     }
   }
 });
 
-export const { deleteEvent, editEvent, EventAsync, getEvent } =
+export const { deleteEvent, editEvent, getEvent, getEvents } =
   eventSlice.actions;
 
 export default eventSlice.reducer;

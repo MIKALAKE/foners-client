@@ -16,7 +16,6 @@ const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createEventModal, setCreateEventModal] = useState(false);
-  const events = useSelector(state => state.event.events);
   const [constructors, setConstructors] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState('');
@@ -53,6 +52,8 @@ const Admin = () => {
     date: ''
   });
   const dispatch = useDispatch();
+
+  const events = useSelector(state => state.event.events);
 
   const postDriver = () => {
     axios.post('http://localhost:3000/v1/drivers', driver).then(res => {
@@ -152,7 +153,7 @@ const Admin = () => {
                 </div>
               )}
 
-              {events.length > 0 ? (
+              {events?.length > 0 ? (
                 events?.map(event => (
                   <EventCardAdmin
                     key={event.id}

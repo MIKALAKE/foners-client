@@ -12,8 +12,8 @@ import { getEventAsync } from '../../../../redux/eventSlice';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 
 const Home = () => {
-  const event = useSelector(state => state.event.event);
   const [constructors, setConstructors] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +27,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getEventAsync());
   }, [dispatch]);
+
+  const event = useSelector(state => state.event.event);
 
   return (
     <div className='flex flex-col w-full h-full'>

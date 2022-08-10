@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Fragment, useState } from 'react';
 
 import { Button, EventInfoCard, Modal, TextField } from '../';
 import { deleteEventAsync, editEventAsync } from '../../../redux/eventSlice';
@@ -8,12 +8,14 @@ const EventCardAdmin = ({ event }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
   const [editEventModal, setEditEventModal] = useState(false);
   const [editedEvent, setEditedEvent] = useState(event);
+
   const dispatch = useDispatch();
 
   const updateEvent = () => {
     dispatch(editEventAsync(editedEvent));
     setEditEventModal(false);
   };
+
   const deleteEvent = () => {
     dispatch(deleteEventAsync({ id: event.id }));
   };
