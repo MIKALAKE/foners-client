@@ -8,7 +8,7 @@ import {
   DriverCard,
   UpcomingEvent
 } from '../../../components';
-import { getEventAsync } from '../../../../redux/eventSlice';
+import { getEventAsync } from '../../../../redux/eventsSlice';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
     dispatch(getEventAsync());
   }, [dispatch]);
 
-  const event = useSelector(state => state.event.event);
+  const event = useSelector(state => state.events.event);
 
   return (
     <div className='flex flex-col w-full h-full'>

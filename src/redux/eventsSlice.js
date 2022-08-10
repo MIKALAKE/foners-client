@@ -36,7 +36,7 @@ export const deleteEventAsync = createAsyncThunk(
 );
 
 export const addEventAsync = createAsyncThunk(
-  'event/addEventAsync',
+  'events/addEventAsync',
   async payload => {
     const resp = await fetch('http://localhost:3000/v1/events', {
       method: 'POST',
@@ -71,8 +71,8 @@ export const editEventAsync = createAsyncThunk(
   }
 );
 
-export const eventSlice = createSlice({
-  name: 'event',
+export const eventsSlice = createSlice({
+  name: 'events',
   initialState: { event: {}, events: [] },
   extraReducers: {
     [getEventsAsync.fulfilled]: (state, { payload }) => {
@@ -100,6 +100,6 @@ export const eventSlice = createSlice({
 });
 
 export const { deleteEvent, editEvent, getEvent, getEvents } =
-  eventSlice.actions;
+  eventsSlice.actions;
 
-export default eventSlice.reducer;
+export default eventsSlice.reducer;

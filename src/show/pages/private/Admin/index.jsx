@@ -10,7 +10,7 @@ import {
   Modal,
   TextField
 } from '../../../components';
-import { addEventAsync, getEventsAsync } from '../../../../redux/eventSlice';
+import { addEventAsync, getEventsAsync } from '../../../../redux/eventsSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -51,9 +51,10 @@ const Admin = () => {
     country: '',
     date: ''
   });
+
   const dispatch = useDispatch();
 
-  const events = useSelector(state => state.event.events);
+  const events = useSelector(state => state.events.events);
 
   const postDriver = () => {
     axios.post('http://localhost:3000/v1/drivers', driver).then(res => {
