@@ -1,12 +1,14 @@
+import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getEventAsync = createAsyncThunk(
   'events/getEventAsync',
   async () => {
-    const resp = await fetch('http://localhost:3000/v1/events/upcoming');
-    if (resp.ok) {
-      const json = await resp.json();
-      return json;
+    try {
+      const res = await axios.get('http://localhost:3000/v1/events/upcoming');
+      return res.data;
+    } catch (err) {
+      return err.message;
     }
   }
 );
@@ -14,10 +16,11 @@ export const getEventAsync = createAsyncThunk(
 export const getEventsAsync = createAsyncThunk(
   'events/getEventsAsync',
   async () => {
-    const resp = await fetch('http://localhost:3000/v1/events');
-    if (resp.ok) {
-      const json = await resp.json();
-      return json;
+    try {
+      const res = await axios.get('http://localhost:3000/v1/events');
+      return res.data;
+    } catch (err) {
+      return err.message;
     }
   }
 );
@@ -25,12 +28,13 @@ export const getEventsAsync = createAsyncThunk(
 export const deleteEventAsync = createAsyncThunk(
   'events/deleteEventAsync',
   async payload => {
-    const resp = await fetch(`http://localhost:3000/v1/events/${payload.id}`, {
-      method: 'DELETE'
-    });
-
-    if (resp.ok) {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3000/v1/events/${payload.id}`
+      );
       return { id: payload.id };
+    } catch (err) {
+      return err.message;
     }
   }
 );
@@ -38,17 +42,11 @@ export const deleteEventAsync = createAsyncThunk(
 export const addEventAsync = createAsyncThunk(
   'events/addEventAsync',
   async payload => {
-    const resp = await fetch('http://localhost:3000/v1/events', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (resp.ok) {
-      const json = await resp.json();
-      return json;
+    try {
+      const res = await axios.post('http://localhost:3000/v1/events', payload);
+      return res.data;
+    } catch (err) {
+      return err.message;
     }
   }
 );
@@ -56,17 +54,14 @@ export const addEventAsync = createAsyncThunk(
 export const editEventAsync = createAsyncThunk(
   'events/editEventAsync',
   async payload => {
-    const resp = await fetch(`http://localhost:3000/v1/events/${payload.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (resp.ok) {
-      const json = await resp.json();
-      return json;
+    try {
+      const res = await axios.put(
+        `http://localhost:3000/v1/events/${payload.id}`,
+        payload
+      );
+      return res.data;
+    } catch (err) {
+      return err.message;
     }
   }
 );
