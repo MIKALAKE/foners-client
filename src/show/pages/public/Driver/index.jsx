@@ -1,18 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 import Moment from 'react-moment';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getDriverAsync } from '../../../../process/redux/driversSlice';
 
 const Driver = () => {
   const { id } = useParams();
-  const [driver, setDriver] = useState({});
+  const driver = useSelector(state => state.drivers.driver);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/v1/drivers/${id}`)
-      .then(res => setDriver(res.data))
-      .catch(err => err);
-  }, [id]);
+    dispatch(getDriverAsync({ id }));
+  }, [dispatch, id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>

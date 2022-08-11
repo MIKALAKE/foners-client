@@ -1,29 +1,27 @@
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
+import {
+  deleteDriverAsync,
+  editDriverAsync
+} from '../../../process/redux/driversSlice';
 import { Button, DriverInfoCard, Modal, TextField } from '../';
 
-const DriverCardAdmin = ({ driver, drivers, setDrivers }) => {
+const DriverCardAdmin = ({ driver }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);
   const [editDriverModal, setEditDriverModal] = useState(false);
   const [editedDriver, setEditedDriver] = useState(driver);
 
-  const deleteDriver = () =>
-    axios.delete(`http://localhost:3000/v1/drivers/${driver.id}`).then(() => {
-      setDriverAdminModal(false);
-      setDrivers(drivers.filter(item => driver.id !== item.id));
-    });
+  const dispatch = useDispatch();
 
-  const updateDriver = () =>
-    axios
-      .put(`http://localhost:3000/v1/drivers/${driver.id}`, editedDriver)
-      .then(res => {
-        setEditDriverModal(false);
-        const newDrivers = [...drivers];
-        const index = newDrivers.findIndex(driver => driver.id === res.data.id);
-        newDrivers[index] = res.data;
-        setDrivers(newDrivers);
-      });
+  const deleteDriver = () => {
+    dispatch(deleteDriverAsync({ id: driver.id }));
+  };
+
+  const updateDriver = () => {
+    dispatch(editDriverAsync(editedDriver));
+    setEditDriverModal(false);
+  };
 
   return (
     <Fragment>

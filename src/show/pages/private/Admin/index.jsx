@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +14,10 @@ import {
   getEventsAsync
 } from '../../../../process/redux/eventsSlice';
 import {
+  addDriverAsync,
+  getDriversAsync
+} from '../../../../process/redux/driversSlice';
+import {
   addConstructorAsync,
   getConstructorsAsync
 } from '../../../../process/redux/constructorsSlice';
@@ -23,7 +26,6 @@ const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createEventModal, setCreateEventModal] = useState(false);
-  const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState('');
   const [driver, setDriver] = useState({
     constructor_id: null,
@@ -61,13 +63,13 @@ const Admin = () => {
   const dispatch = useDispatch();
 
   const events = useSelector(state => state.events.events);
+  const drivers = useSelector(state => state.drivers.drivers);
   const constructors = useSelector(state => state.constructors.constructors);
 
-  const postDriver = () => {
-    axios.post('http://localhost:3000/v1/drivers', driver).then(res => {
-      setDrivers([...drivers, res.data]);
-      setCreateDriverModal(false);
-    });
+  const postDriver = e => {
+    e.preventDefault();
+    dispatch(addDriverAsync(driver));
+    setCreateDriverModal(false);
   };
 
   const postEvent = e => {
@@ -83,13 +85,8 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/v1/drivers?search=${search}`)
-      .then(res => setDrivers(res.data));
-  }, [search]);
-
-  useEffect(() => {
     dispatch(getEventsAsync());
+    dispatch(getDriversAsync());
     dispatch(getConstructorsAsync());
   }, [dispatch]);
 
@@ -146,7 +143,6 @@ const Admin = () => {
                     key={driver.id}
                     driver={driver}
                     drivers={drivers}
-                    setDrivers={setDrivers}
                   />
                 ))
               ) : (
