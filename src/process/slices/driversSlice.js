@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const addDriverAsync = createAsyncThunk(
-  'drivers/addDriverAsync',
+export const addDriver = createAsyncThunk(
+  'drivers/addDriver',
   async payload => {
     try {
       const res = await axios.post('http://localhost:3000/v1/drivers', payload);
@@ -13,8 +13,8 @@ export const addDriverAsync = createAsyncThunk(
   }
 );
 
-export const getDriverAsync = createAsyncThunk(
-  'drivers/getDriverAsync',
+export const getDriver = createAsyncThunk(
+  'drivers/getDriver',
   async payload => {
     try {
       const res = await axios.get(
@@ -27,20 +27,17 @@ export const getDriverAsync = createAsyncThunk(
   }
 );
 
-export const getDriversAsync = createAsyncThunk(
-  'drivers/getDriversAsync',
-  async () => {
-    try {
-      const res = await axios.get('http://localhost:3000/v1/drivers/');
-      return res.data;
-    } catch (err) {
-      return err.message;
-    }
+export const getDrivers = createAsyncThunk('drivers/getDrivers', async () => {
+  try {
+    const res = await axios.get('http://localhost:3000/v1/drivers/');
+    return res.data;
+  } catch (err) {
+    return err.message;
   }
-);
+});
 
-export const editDriverAsync = createAsyncThunk(
-  'drivers/editDriverAsync',
+export const editDriver = createAsyncThunk(
+  'drivers/editDriver',
   async payload => {
     try {
       const res = await axios.put(
@@ -54,8 +51,8 @@ export const editDriverAsync = createAsyncThunk(
   }
 );
 
-export const deleteDriverAsync = createAsyncThunk(
-  'drivers/deleteDriverAsync',
+export const deleteDriver = createAsyncThunk(
+  'drivers/deleteDriver',
   async payload => {
     try {
       await axios.delete(`http://localhost:3000/v1/drivers/${payload.id}`);
@@ -70,21 +67,21 @@ export const driversSlice = createSlice({
   name: 'drivers',
   initialState: { driver: {}, drivers: [] },
   extraReducers: {
-    [addDriverAsync.fulfilled]: (state, { payload }) => {
+    [addDriver.fulfilled]: (state, { payload }) => {
       return { ...state, drivers: [...state.drivers, payload] };
     },
-    [getDriverAsync.fulfilled]: (state, { payload }) => {
+    [getDriver.fulfilled]: (state, { payload }) => {
       return { ...state, driver: payload };
     },
-    [getDriversAsync.fulfilled]: (state, { payload }) => {
+    [getDrivers.fulfilled]: (state, { payload }) => {
       return { ...state, drivers: payload };
     },
-    [deleteDriverAsync.fulfilled]: (state, { payload }) => {
+    [deleteDriver.fulfilled]: (state, { payload }) => {
       const filter = driver => driver.id !== payload.id;
       const filtereddrivers = state.drivers.filter(filter);
       return { ...state, drivers: filtereddrivers };
     },
-    [editDriverAsync.fulfilled]: (state, { payload }) => {
+    [editDriver.fulfilled]: (state, { payload }) => {
       const newDrivers = [...state.drivers];
       const find = driver => driver.id === payload.id;
       const index = newDrivers.findIndex(find);

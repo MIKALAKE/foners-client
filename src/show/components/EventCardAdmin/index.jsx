@@ -1,10 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
-import {
-  deleteEventAsync,
-  editEventAsync
-} from '../../../process/redux/eventsSlice';
+import { deleteEvent, editEvent } from '../../../process/slices/eventsSlice';
 import { Button, EventInfoCard, Modal, TextField } from '../';
 
 const EventCardAdmin = ({ event }) => {
@@ -15,12 +12,12 @@ const EventCardAdmin = ({ event }) => {
   const dispatch = useDispatch();
 
   const updateEvent = () => {
-    dispatch(editEventAsync(editedEvent));
+    dispatch(editEvent(editedEvent));
     setEditEventModal(false);
   };
 
-  const deleteEvent = () => {
-    dispatch(deleteEventAsync({ id: event.id }));
+  const deleteEventAction = () => {
+    dispatch(deleteEvent({ id: event.id }));
   };
 
   return (
@@ -65,7 +62,7 @@ const EventCardAdmin = ({ event }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={deleteEvent}
+                    onClick={deleteEventAction}
                   />
                 </div>
               </div>

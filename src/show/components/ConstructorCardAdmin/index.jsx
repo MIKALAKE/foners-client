@@ -2,9 +2,9 @@ import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
 import {
-  deleteConstructorAsync,
-  editConstructorAsync
-} from '../../../process/redux/constructorsSlice';
+  deleteConstructor,
+  editConstructor
+} from '../../../process/slices/constructorsSlice';
 import { Button, ConstructorInfoCard, Modal, TextField } from '../';
 
 const ConstructorCardAdmin = ({ constructor }) => {
@@ -14,12 +14,12 @@ const ConstructorCardAdmin = ({ constructor }) => {
 
   const dispatch = useDispatch();
 
-  const deleteConstructor = () => {
-    dispatch(deleteConstructorAsync({ id: constructor.id }));
+  const deleteConstructorAction = () => {
+    dispatch(deleteConstructor({ id: constructor.id }));
   };
 
   const updateConstructor = () => {
-    dispatch(editConstructorAsync(editedConstructor));
+    dispatch(editConstructor(editedConstructor));
     setEditConstructorModal(false);
   };
 
@@ -69,7 +69,7 @@ const ConstructorCardAdmin = ({ constructor }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={deleteConstructor}
+                    onClick={deleteConstructorAction}
                   />
                 </div>
               </div>

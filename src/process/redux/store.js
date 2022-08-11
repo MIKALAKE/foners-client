@@ -1,13 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import eventsReducer from './eventsSlice';
-import driversReducer from './driversSlice';
-import constructorsReducer from './constructorsSlice';
+import { createLogger } from 'redux-logger';
+import eventsReducer from '../slices/eventsSlice';
+import driversReducer from '../slices/driversSlice';
+import constructorsReducer from '../slices/constructorsSlice';
 
-export default configureStore({
-  reducer: {
-    events: eventsReducer,
-    drivers: driversReducer,
-    constructors: constructorsReducer
-  }
+const logger = createLogger({
+  collapsed: true
 });
+
+const reducer = combineReducers({
+  events: eventsReducer,
+  drivers: driversReducer,
+  constructors: constructorsReducer
+});
+
+const store = configureStore({
+  reducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
+});
+
+export default store;

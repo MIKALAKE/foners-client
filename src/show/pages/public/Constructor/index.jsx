@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getConstructorAsync } from '../../../../process/redux/constructorsSlice';
+import { getConstructor } from '../../../../process/slices/constructorsSlice';
 
 const Constructor = () => {
   const { id } = useParams();
@@ -11,7 +11,7 @@ const Constructor = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getConstructorAsync({ id }));
+    dispatch(getConstructor({ id }));
   }, [dispatch, id]);
 
   return (

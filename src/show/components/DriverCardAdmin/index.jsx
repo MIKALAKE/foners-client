@@ -1,10 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
-import {
-  deleteDriverAsync,
-  editDriverAsync
-} from '../../../process/redux/driversSlice';
+import { deleteDriver, editDriver } from '../../../process/slices/driversSlice';
 import { Button, DriverInfoCard, Modal, TextField } from '../';
 
 const DriverCardAdmin = ({ driver }) => {
@@ -14,12 +11,12 @@ const DriverCardAdmin = ({ driver }) => {
 
   const dispatch = useDispatch();
 
-  const deleteDriver = () => {
-    dispatch(deleteDriverAsync({ id: driver.id }));
+  const deleteDriverAction = () => {
+    dispatch(deleteDriver({ id: driver.id }));
   };
 
   const updateDriver = () => {
-    dispatch(editDriverAsync(editedDriver));
+    dispatch(editDriver(editedDriver));
     setEditDriverModal(false);
   };
 
@@ -64,7 +61,7 @@ const DriverCardAdmin = ({ driver }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={deleteDriver}
+                    onClick={deleteDriverAction}
                   />
                 </div>
               </div>
