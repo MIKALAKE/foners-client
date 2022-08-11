@@ -1,26 +1,23 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   ConstructorStandingCard,
   DriverStandingCard
 } from '../../../components';
+import { getDriversAsync } from '../../../../process/redux/driversSlice';
+import { getConstructorsAsync } from '../../../../process/redux/constructorsSlice';
 
 const Standings = () => {
-  const [constructors, setConstructors] = useState([]);
-  const [drivers, setDrivers] = useState([]);
+  const drivers = useSelector(state => state.drivers.drivers);
+  const constructors = useSelector(state => state.constructors.constructors);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/constructors/')
-      .then(res => setConstructors(res.data))
-      .catch(err => err);
-
-    axios
-      .get('http://localhost:3000/v1/drivers/')
-      .then(res => setDrivers(res.data))
-      .catch(err => err);
-  }, []);
+    dispatch(getDriversAsync());
+    dispatch(getConstructorsAsync());
+  }, [dispatch]);
 
   return (
     <div className='flex w-full h-full flex-col'>

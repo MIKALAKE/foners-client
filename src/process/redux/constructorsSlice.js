@@ -17,7 +17,7 @@ export const addConstructorAsync = createAsyncThunk(
 );
 
 export const getConstructorsAsync = createAsyncThunk(
-  'constructors/getConstructorAsync',
+  'constructors/getConstructorsAsync',
   async () => {
     try {
       const res = await axios.get('http://localhost:3000/v1/constructors/');
@@ -30,10 +30,10 @@ export const getConstructorsAsync = createAsyncThunk(
 
 export const getConstructorAsync = createAsyncThunk(
   'constructors/getConstructorAsync',
-  async () => {
+  async payload => {
     try {
       const res = await axios.get(
-        'http://localhost:3000/v1/constructors/upcoming'
+        `http://localhost:3000/v1/constructors/${payload.id}`
       );
       return res.data;
     } catch (err) {

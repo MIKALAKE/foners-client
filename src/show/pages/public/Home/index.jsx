@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,22 +9,17 @@ import {
 } from '../../../components';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 import { getEventAsync } from '../../../../process/redux/eventsSlice';
+import { getConstructorsAsync } from '../../../../process/redux/constructorsSlice';
 
 const Home = () => {
-  const [constructors, setConstructors] = useState([]);
+  const constructors = useSelector(state => state.constructors.constructors);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/v1/constructors/')
-      .then(res => setConstructors(res.data))
-      .catch(err => err);
-  }, []);
-
-  useEffect(() => {
     dispatch(getEventAsync());
+    dispatch(getConstructorsAsync());
   }, [dispatch]);
 
   const event = useSelector(state => state.events.event);

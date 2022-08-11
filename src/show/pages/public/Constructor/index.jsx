@@ -1,17 +1,18 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getConstructorAsync } from '../../../../process/redux/constructorsSlice';
 
 const Constructor = () => {
   const { id } = useParams();
-  const [constructor, setConstructor] = useState({});
+  const constructor = useSelector(state => state.constructors.constructor);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/v1/constructors/${id}`)
-      .then(res => setConstructor(res.data))
-      .catch(err => err);
-  }, [id]);
+    dispatch(getConstructorAsync({ id }));
+  }, [dispatch, id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
