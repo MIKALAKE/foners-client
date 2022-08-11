@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const addDriverAsync = createAsyncThunk(
-  'drivers/adDriverAsync',
+  'drivers/addDriverAsync',
   async payload => {
     try {
       const res = await axios.post('http://localhost:3000/v1/drivers', payload);
