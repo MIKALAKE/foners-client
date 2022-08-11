@@ -1,41 +1,27 @@
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
+import {
+  deleteConstructorAsync,
+  editConstructorAsync
+} from '../../../process/redux/constructorsSlice';
 import { Button, ConstructorInfoCard, Modal, TextField } from '../';
 
-const ConstructorCardAdmin = ({
-  constructor,
-  constructors,
-  setConstructors
-}) => {
-  const [editConstructorModal, setEditConstructorModal] = useState(false);
+const ConstructorCardAdmin = ({ constructor }) => {
   const [constructorAdminModal, setConstructorAdminModal] = useState(false);
+  const [editConstructorModal, setEditConstructorModal] = useState(false);
   const [editedConstructor, setEditedConstructor] = useState(constructor);
 
-  const deleteConstructor = () =>
-    axios
-      .delete(`http://localhost:3000/v1/constructors/${constructor.id}`)
-      .then(() => {
-        const filterConstructors = object => constructor.id !== object.id;
-        const filteredConstructors = constructors.filter(filterConstructors);
-        setConstructorAdminModal(false);
-        setConstructors(filteredConstructors);
-      });
-  const updateConstructor = () =>
-    axios
-      .put(
-        `http://localhost:3000/v1/constructors/${constructor.id}`,
-        editedConstructor
-      )
-      .then(res => {
-        setEditConstructorModal(false);
-        const newConstructors = [...constructors];
-        const index = newConstructors.findIndex(
-          constructor => constructor.id === res.data.id
-        );
-        newConstructors[index] = res.data;
-        setConstructors(newConstructors);
-      });
+  const dispatch = useDispatch();
+
+  const deleteConstructor = () => {
+    dispatch(deleteConstructorAsync({ id: constructor.id }));
+  };
+
+  const updateConstructor = () => {
+    dispatch(editConstructorAsync(editedConstructor));
+    setEditConstructorModal(false);
+  };
 
   return (
     <Fragment>

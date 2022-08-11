@@ -29,9 +29,7 @@ export const deleteEventAsync = createAsyncThunk(
   'events/deleteEventAsync',
   async payload => {
     try {
-      const res = await axios.delete(
-        `http://localhost:3000/v1/events/${payload.id}`
-      );
+      await axios.delete(`http://localhost:3000/v1/events/${payload.id}`);
       return { id: payload.id };
     } catch (err) {
       return err.message;
@@ -93,8 +91,5 @@ export const eventsSlice = createSlice({
     }
   }
 });
-
-export const { deleteEvent, editEvent, getEvent, getEvents } =
-  eventsSlice.actions;
 
 export default eventsSlice.reducer;
