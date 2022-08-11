@@ -11,10 +11,13 @@ import {
   TextField
 } from '../../../components';
 import {
+  addEventAsync,
+  getEventsAsync
+} from '../../../../process/redux/eventsSlice';
+import {
   addConstructorAsync,
   getConstructorsAsync
-} from '../../../../redux/constructorsSlice';
-import { addEventAsync, getEventsAsync } from '../../../../redux/eventsSlice';
+} from '../../../../process/redux/constructorsSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -72,6 +75,7 @@ const Admin = () => {
     dispatch(addEventAsync(event));
     setCreateEventModal(false);
   };
+
   const postConstructor = e => {
     e.preventDefault();
     dispatch(addConstructorAsync(constructor));

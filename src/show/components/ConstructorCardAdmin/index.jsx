@@ -4,12 +4,12 @@ import { Fragment, useState } from 'react';
 import {
   deleteConstructorAsync,
   editConstructorAsync
-} from '../../../redux/constructorsSlice';
+} from '../../../process/redux/constructorsSlice';
 import { Button, ConstructorInfoCard, Modal, TextField } from '../';
 
 const ConstructorCardAdmin = ({ constructor }) => {
-  const [editConstructorModal, setEditConstructorModal] = useState(false);
   const [constructorAdminModal, setConstructorAdminModal] = useState(false);
+  const [editConstructorModal, setEditConstructorModal] = useState(false);
   const [editedConstructor, setEditedConstructor] = useState(constructor);
 
   const dispatch = useDispatch();

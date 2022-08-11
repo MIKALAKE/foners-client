@@ -61,9 +61,7 @@ export const deleteConstructorAsync = createAsyncThunk(
   'constructors/deleteConstructorAsync',
   async payload => {
     try {
-      const res = await axios.delete(
-        `http://localhost:3000/v1/constructors/${payload.id}`
-      );
+      await axios.delete(`http://localhost:3000/v1/constructors/${payload.id}`);
       return { id: payload.id };
     } catch (err) {
       return err.message;
@@ -98,12 +96,5 @@ export const constructorsSlice = createSlice({
     }
   }
 });
-
-export const {
-  deleteConstructor,
-  editConstructor,
-  getConstructor,
-  getConstructors
-} = constructorsSlice.actions;
 
 export default constructorsSlice.reducer;

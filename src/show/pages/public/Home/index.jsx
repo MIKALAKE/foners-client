@@ -8,8 +8,8 @@ import {
   DriverCard,
   UpcomingEvent
 } from '../../../components';
-import { getEventAsync } from '../../../../redux/eventsSlice';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
+import { getEventAsync } from '../../../../process/redux/eventsSlice';
 
 const Home = () => {
   const [constructors, setConstructors] = useState([]);
