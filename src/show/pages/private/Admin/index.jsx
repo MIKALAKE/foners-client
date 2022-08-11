@@ -10,13 +10,16 @@ import {
   Modal,
   TextField
 } from '../../../components';
+import {
+  addConstructorAsync,
+  getConstructorsAsync
+} from '../../../../redux/constructorsSlice';
 import { addEventAsync, getEventsAsync } from '../../../../redux/eventsSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createEventModal, setCreateEventModal] = useState(false);
-  const [constructors, setConstructors] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState('');
   const [driver, setDriver] = useState({
@@ -55,6 +58,7 @@ const Admin = () => {
   const dispatch = useDispatch();
 
   const events = useSelector(state => state.events.events);
+  const constructors = useSelector(state => state.constructors.constructors);
 
   const postDriver = () => {
     axios.post('http://localhost:3000/v1/drivers', driver).then(res => {
@@ -62,26 +66,19 @@ const Admin = () => {
       setCreateDriverModal(false);
     });
   };
-  const postConstructor = () => {
-    axios
-      .post('http://localhost:3000/v1/constructors', constructor)
-      .then(res => {
-        setConstructors([...constructors, res.data]);
-        setCreateConstructorModal(false);
-      });
-  };
 
   const postEvent = e => {
     e.preventDefault();
     dispatch(addEventAsync(event));
     setCreateEventModal(false);
   };
+  const postConstructor = e => {
+    e.preventDefault();
+    dispatch(addConstructorAsync(constructor));
+    setCreateConstructorModal(false);
+  };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/v1/constructors?search=${search}`)
-      .then(res => setConstructors(res.data));
-
     axios
       .get(`http://localhost:3000/v1/drivers?search=${search}`)
       .then(res => setDrivers(res.data));
@@ -89,6 +86,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getEventsAsync());
+    dispatch(getConstructorsAsync());
   }, [dispatch]);
 
   return (
@@ -130,7 +128,6 @@ const Admin = () => {
                     key={constructor.id}
                     constructor={constructor}
                     constructors={constructors}
-                    setConstructors={setConstructors}
                   />
                 ))
               ) : (
