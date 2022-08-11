@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const addDriverAsync = createAsyncThunk(
-  'drivers/adddriverAsync',
+  'drivers/adDriverAsync',
   async payload => {
     try {
       const res = await axios.post('http://localhost:3000/v1/drivers', payload);
@@ -55,7 +55,7 @@ export const editDriverAsync = createAsyncThunk(
 );
 
 export const deleteDriverAsync = createAsyncThunk(
-  'drivers/deletedriverAsync',
+  'drivers/deleteDriverAsync',
   async payload => {
     try {
       await axios.delete(`http://localhost:3000/v1/drivers/${payload.id}`);
