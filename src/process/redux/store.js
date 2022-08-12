@@ -1,6 +1,6 @@
+import { createLogger } from 'redux-logger';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import { createLogger } from 'redux-logger';
 import eventsReducer from '../slices/eventsSlice';
 import driversReducer from '../slices/driversSlice';
 import constructorsReducer from '../slices/constructorsSlice';
