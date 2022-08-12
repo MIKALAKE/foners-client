@@ -58,9 +58,7 @@ const EventCardAdmin = ({ event }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() => {
-                      dispatch(deleteEvent({ id: event.id }));
-                    }}
+                    onClick={() => dispatch(deleteEvent({ id: event.id }))}
                   />
                 </div>
               </div>

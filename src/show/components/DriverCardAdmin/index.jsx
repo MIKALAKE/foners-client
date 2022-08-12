@@ -57,9 +57,7 @@ const DriverCardAdmin = ({ driver }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() => {
-                      dispatch(deleteDriver({ id: driver.id }));
-                    }}
+                    onClick={() => dispatch(deleteDriver({ id: driver.id }))}
                   />
                 </div>
               </div>

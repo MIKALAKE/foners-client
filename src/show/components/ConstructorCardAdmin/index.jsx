@@ -65,9 +65,9 @@ const ConstructorCardAdmin = ({ constructor }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() => {
-                      dispatch(deleteConstructor({ id: constructor.id }));
-                    }}
+                    onClick={() =>
+                      dispatch(deleteConstructor({ id: constructor.id }))
+                    }
                   />
                 </div>
               </div>
