@@ -7,8 +7,8 @@ import {
   DriverCard,
   UpcomingEvent
 } from '../../../components';
-import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 import { getEvent } from '../../../../process/slices/eventsSlice';
+import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
 import { getConstructors } from '../../../../process/slices/constructorsSlice';
 
 const Home = () => {

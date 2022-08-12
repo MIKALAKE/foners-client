@@ -14,10 +14,6 @@ const ConstructorCardAdmin = ({ constructor }) => {
 
   const dispatch = useDispatch();
 
-  const deleteConstructorAction = () => {
-    dispatch(deleteConstructor({ id: constructor.id }));
-  };
-
   const updateConstructor = () => {
     dispatch(editConstructor(editedConstructor));
     setEditConstructorModal(false);
@@ -69,7 +65,9 @@ const ConstructorCardAdmin = ({ constructor }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={deleteConstructorAction}
+                    onClick={() => {
+                      dispatch(deleteConstructor({ id: constructor.id }));
+                    }}
                   />
                 </div>
               </div>

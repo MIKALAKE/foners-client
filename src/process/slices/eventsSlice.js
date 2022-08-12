@@ -1,6 +1,7 @@
 import axios from 'axios';
-import baseUrl from '../api/index';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import baseUrl from '../api/index';
 
 export const getEvent = createAsyncThunk('events/getEvent', async () => {
   try {
