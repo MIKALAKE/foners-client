@@ -1,13 +1,12 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import baseUrl from '../api/index';
+import Api from '../api';
 
 export const addConstructor = createAsyncThunk(
   'constructors/addConstructor',
   async payload => {
     try {
-      const res = await axios.post(`${baseUrl}/constructors`, payload);
+      const res = await Api.post(`/constructors`, payload);
       return res.data;
     } catch (err) {
       return err.message;
@@ -19,7 +18,7 @@ export const getConstructors = createAsyncThunk(
   'constructors/getConstructors',
   async () => {
     try {
-      const res = await axios.get(`${baseUrl}/constructors/`);
+      const res = await Api.get(`/constructors/`);
       return res.data;
     } catch (err) {
       return err.message;
@@ -31,7 +30,7 @@ export const getConstructor = createAsyncThunk(
   'constructors/getConstructor',
   async payload => {
     try {
-      const res = await axios.get(`${baseUrl}/constructors/${payload.id}`);
+      const res = await Api.get(`/constructors/${payload.id}`);
       return res.data;
     } catch (err) {
       return err.message;
@@ -43,10 +42,7 @@ export const editConstructor = createAsyncThunk(
   'constructors/editConstructor',
   async payload => {
     try {
-      const res = await axios.put(
-        `${baseUrl}/constructors/${payload.id}`,
-        payload
-      );
+      const res = await Api.put(`/constructors/${payload.id}`, payload);
       return res.data;
     } catch (err) {
       return err.message;
@@ -58,7 +54,7 @@ export const deleteConstructor = createAsyncThunk(
   'constructors/deleteConstructor',
   async payload => {
     try {
-      await axios.delete(`${baseUrl}/constructors/${payload.id}`);
+      await Api.delete(`/constructors/${payload.id}`);
       return { id: payload.id };
     } catch (err) {
       return err.message;

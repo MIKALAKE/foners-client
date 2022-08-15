@@ -1,13 +1,12 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import baseUrl from '../api/index';
+import Api from '../api';
 
 export const addDriver = createAsyncThunk(
   'drivers/addDriver',
   async payload => {
     try {
-      const res = await axios.post(`${baseUrl}/drivers`, payload);
+      const res = await Api.post(`/drivers`, payload);
       return res.data;
     } catch (err) {
       return err.message;
@@ -19,7 +18,7 @@ export const getDriver = createAsyncThunk(
   'drivers/getDriver',
   async payload => {
     try {
-      const res = await axios.get(`${baseUrl}/drivers/${payload.id}`);
+      const res = await Api.get(`/drivers/${payload.id}`);
       return res.data;
     } catch (err) {
       return err.message;
@@ -29,7 +28,7 @@ export const getDriver = createAsyncThunk(
 
 export const getDrivers = createAsyncThunk('drivers/getDrivers', async () => {
   try {
-    const res = await axios.get(`${baseUrl}/drivers/`);
+    const res = await Api.get(`/drivers/`);
     return res.data;
   } catch (err) {
     return err.message;
@@ -40,7 +39,7 @@ export const editDriver = createAsyncThunk(
   'drivers/editDriver',
   async payload => {
     try {
-      const res = await axios.put(`${baseUrl}/drivers/${payload.id}`, payload);
+      const res = await Api.put(`/drivers/${payload.id}`, payload);
       return res.data;
     } catch (err) {
       return err.message;
@@ -52,7 +51,7 @@ export const deleteDriver = createAsyncThunk(
   'drivers/deleteDriver',
   async payload => {
     try {
-      await axios.delete(`${baseUrl}/drivers/${payload.id}`);
+      await Api.delete(`/drivers/${payload.id}`);
       return { id: payload.id };
     } catch (err) {
       return err.message;

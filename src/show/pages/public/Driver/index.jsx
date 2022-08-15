@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import Moment from 'react-moment';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
