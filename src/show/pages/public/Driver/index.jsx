@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getDriverAsync } from '../../../../process/redux/driversSlice';
+import { getDriver } from '../../../../process/slices/driversSlice';
 
 const Driver = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const Driver = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDriverAsync({ id }));
+    dispatch(getDriver({ id }));
   }, [dispatch, id]);
 
   return (

@@ -5,8 +5,8 @@ import {
   ConstructorStandingCard,
   DriverStandingCard
 } from '../../../components';
-import { getDriversAsync } from '../../../../process/redux/driversSlice';
-import { getConstructorsAsync } from '../../../../process/redux/constructorsSlice';
+import { getDrivers } from '../../../../process/slices/driversSlice';
+import { getConstructors } from '../../../../process/slices/constructorsSlice';
 
 const Standings = () => {
   const drivers = useSelector(state => state.drivers.drivers);
@@ -15,8 +15,8 @@ const Standings = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDriversAsync());
-    dispatch(getConstructorsAsync());
+    dispatch(getDrivers());
+    dispatch(getConstructors());
   }, [dispatch]);
 
   return (

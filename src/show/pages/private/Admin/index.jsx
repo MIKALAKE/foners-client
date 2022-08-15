@@ -9,18 +9,12 @@ import {
   Modal,
   TextField
 } from '../../../components';
+import { addEvent, getEvents } from '../../../../process/slices/eventsSlice';
+import { addDriver, getDrivers } from '../../../../process/slices/driversSlice';
 import {
-  addEventAsync,
-  getEventsAsync
-} from '../../../../process/redux/eventsSlice';
-import {
-  addDriverAsync,
-  getDriversAsync
-} from '../../../../process/redux/driversSlice';
-import {
-  addConstructorAsync,
-  getConstructorsAsync
-} from '../../../../process/redux/constructorsSlice';
+  addConstructor,
+  getConstructors
+} from '../../../../process/slices/constructorsSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -68,26 +62,26 @@ const Admin = () => {
 
   const postDriver = e => {
     e.preventDefault();
-    dispatch(addDriverAsync(driver));
+    dispatch(addDriver(driver));
     setCreateDriverModal(false);
   };
 
   const postEvent = e => {
     e.preventDefault();
-    dispatch(addEventAsync(event));
+    dispatch(addEvent(event));
     setCreateEventModal(false);
   };
 
   const postConstructor = e => {
     e.preventDefault();
-    dispatch(addConstructorAsync(constructor));
+    dispatch(addConstructor(constructor));
     setCreateConstructorModal(false);
   };
 
   useEffect(() => {
-    dispatch(getEventsAsync());
-    dispatch(getDriversAsync());
-    dispatch(getConstructorsAsync());
+    dispatch(getEvents());
+    dispatch(getDrivers());
+    dispatch(getConstructors());
   }, [dispatch]);
 
   return (

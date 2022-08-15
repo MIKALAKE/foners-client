@@ -7,9 +7,9 @@ import {
   DriverCard,
   UpcomingEvent
 } from '../../../components';
+import { getEvent } from '../../../../process/slices/eventsSlice';
 import { CONSTRUCTOR_PATH } from '../../../../process/routes/paths';
-import { getEventAsync } from '../../../../process/redux/eventsSlice';
-import { getConstructorsAsync } from '../../../../process/redux/constructorsSlice';
+import { getConstructors } from '../../../../process/slices/constructorsSlice';
 
 const Home = () => {
   const constructors = useSelector(state => state.constructors.constructors);
@@ -18,8 +18,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getEventAsync());
-    dispatch(getConstructorsAsync());
+    dispatch(getEvent());
+    dispatch(getConstructors());
   }, [dispatch]);
 
   const event = useSelector(state => state.events.event);
