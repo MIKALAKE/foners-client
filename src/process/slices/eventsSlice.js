@@ -1,11 +1,10 @@
-import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import baseUrl from '../api/index';
+import Api from '../api';
 
 export const getEvent = createAsyncThunk('events/getEvent', async () => {
   try {
-    const res = await axios.get(`${baseUrl}/events/upcoming`);
+    const res = await Api.get(`/events/upcoming`);
     return res.data;
   } catch (err) {
     return err.message;
@@ -14,7 +13,7 @@ export const getEvent = createAsyncThunk('events/getEvent', async () => {
 
 export const getEvents = createAsyncThunk('events/getEvents', async () => {
   try {
-    const res = await axios.get(`${baseUrl}/events`);
+    const res = await Api.get(`/events`);
     return res.data;
   } catch (err) {
     return err.message;
@@ -25,7 +24,7 @@ export const deleteEvent = createAsyncThunk(
   'events/deleteEvent',
   async payload => {
     try {
-      await axios.delete(`${baseUrl}/events/${payload.id}`);
+      await Api.delete(`/events/${payload.id}`);
       return { id: payload.id };
     } catch (err) {
       return err.message;
@@ -35,7 +34,7 @@ export const deleteEvent = createAsyncThunk(
 
 export const addEvent = createAsyncThunk('events/addEvent', async payload => {
   try {
-    const res = await axios.post(`${baseUrl}/events`, payload);
+    const res = await Api.post(`/events`, payload);
     return res.data;
   } catch (err) {
     return err.message;
@@ -44,7 +43,7 @@ export const addEvent = createAsyncThunk('events/addEvent', async payload => {
 
 export const editEvent = createAsyncThunk('events/editEvent', async payload => {
   try {
-    const res = await axios.put(`${baseUrl}/events/${payload.id}`, payload);
+    const res = await Api.put(`/events/${payload.id}`, payload);
     return res.data;
   } catch (err) {
     return err.message;
