@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  ConstructorStandingCard,
-  DriverStandingCard
-} from '../../../components';
-import { getDrivers } from '../../../../process/slices/driversSlice';
-import { getConstructors } from '../../../../process/slices/constructorsSlice';
+import { getDrivers } from 'process/slices/driversSlice';
+import { getConstructors } from 'process/slices/constructorsSlice';
+import { ConstructorStandingCard, DriverStandingCard } from 'show/components';
 
 const Standings = () => {
   const drivers = useSelector(state => state.drivers.drivers);

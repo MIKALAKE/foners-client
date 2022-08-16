@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getDriver } from '../../../../process/slices/driversSlice';
+import { getDriver } from 'process/slices/driversSlice';
 
 const Driver = () => {
   const { id } = useParams();

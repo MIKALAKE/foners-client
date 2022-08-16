@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import routes from './process/routes';
-import { Footer, Navbar } from './show/components';
+import routes from 'process/routes';
+import { Footer, Navbar } from 'show/components';
 
 const Application = () => {
   return (
