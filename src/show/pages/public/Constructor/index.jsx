@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getConstructor } from '../../../../process/slices/constructorsSlice';
+import { getConstructor } from 'process/slices/constructorsSlice';
 
 const Constructor = () => {
   const { id } = useParams();

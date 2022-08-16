@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
+import { deleteDriver, editDriver } from 'process/slices/driversSlice';
+
 import { Button, DriverInfoCard, Modal, TextField } from '../';
-import { deleteDriver, editDriver } from '../../../process/slices/driversSlice';
 
 const DriverCardAdmin = ({ driver }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);

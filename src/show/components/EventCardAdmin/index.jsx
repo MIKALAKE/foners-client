@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
+import { deleteEvent, editEvent } from 'process/slices/eventsSlice';
+
 import { Button, EventInfoCard, Modal, TextField } from '../';
-import { deleteEvent, editEvent } from '../../../process/slices/eventsSlice';
 
 const EventCardAdmin = ({ event }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DRIVER_PATH } from '../../../process/routes/paths';
+import { DRIVER_PATH } from 'process/routes/paths';
 
 const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
   const navigate = useNavigate();

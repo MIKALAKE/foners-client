@@ -1,5 +1,6 @@
+import Pages from 'show/pages';
+
 import * as Paths from './paths.js';
-import Pages from '../../show/pages';
 
 const Admin = {
   element: Pages.Admin,

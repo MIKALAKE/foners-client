@@ -8,13 +8,13 @@ import {
   EventCardAdmin,
   Modal,
   TextField
-} from '../../../components';
-import { addEvent, getEvents } from '../../../../process/slices/eventsSlice';
-import { addDriver, getDrivers } from '../../../../process/slices/driversSlice';
+} from 'show/components';
 import {
   addConstructor,
   getConstructors
-} from '../../../../process/slices/constructorsSlice';
+} from 'process/slices/constructorsSlice';
+import { addEvent, getEvents } from 'process/slices/eventsSlice';
+import { addDriver, getDrivers } from 'process/slices/driversSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
