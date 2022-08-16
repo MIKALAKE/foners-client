@@ -9,12 +9,12 @@ import {
   Modal,
   TextField
 } from 'show/components';
-import { addEvent, getEvents } from 'process/slices/eventsSlice';
-import { addDriver, getDrivers } from 'process/slices/driversSlice';
 import {
   addConstructor,
   getConstructors
 } from 'process/slices/constructorsSlice';
+import { addEvent, getEvents } from 'process/slices/eventsSlice';
+import { addDriver, getDrivers } from 'process/slices/driversSlice';
 
 const Admin = () => {
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
