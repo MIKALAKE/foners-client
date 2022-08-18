@@ -5,7 +5,6 @@ import Api from '../api';
 export const logIn = createAsyncThunk('user/logIn', async payload => {
   try {
     const res = await Api.post(`/auth/sign_in`, payload);
-    console.log(res.headers);
     return { ...res.data.data, headers: res.headers };
   } catch (err) {
     return err.message;
@@ -38,7 +37,7 @@ export const userSlice = createSlice({
       Api.setHeaders(payload.headers);
       return { ...payload, isLoggedIn: true };
     },
-    [logOut.fulfilled]: (state, { payload }) => {
+    [logOut.fulfilled]: () => {
       return { isLoggedIn: false };
     },
     [register.fulfilled]: (state, { payload }) => {
