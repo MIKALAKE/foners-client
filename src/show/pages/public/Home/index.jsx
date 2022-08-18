@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Paths from 'process/routes/paths';
 import { getEvent } from 'process/slices/eventsSlice';
-import { CONSTRUCTOR_PATH } from 'process/routes/paths';
 import { getConstructors } from 'process/slices/constructorsSlice';
+
 import { ConstructorCard, DriverCard, UpcomingEvent } from 'show/components';
 
 const Home = () => {
@@ -38,7 +39,9 @@ const Home = () => {
             constructors?.map(constructor => (
               <div
                 onClick={() =>
-                  navigate(CONSTRUCTOR_PATH.replace(':id', constructor.id))
+                  navigate(
+                    Paths.public.CONSTRUCTOR_PATH.replace(':id', constructor.id)
+                  )
                 }
                 key={constructor.id}>
                 <ConstructorCard constructor={constructor} />

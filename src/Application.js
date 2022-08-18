@@ -1,15 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import routes from 'process/routes';
+import Paths from 'process/routes/paths';
+import { privateRoutes, publicRoutes } from 'process/routes';
+
 import { Footer, Navbar } from 'show/components';
 
 const Application = () => {
+  const currentUser = useSelector(state => state.user);
+
   return (
     <div className='flex flex-col justify-between items-center h-screen'>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          {routes.map(route => (
+          {privateRoutes.map(route => (
+            <Route
+              path={route.path}
+              key={route.path}
+              element={
+                currentUser.isLoggedIn ? (
+                  <route.element />
+                ) : (
+                  <Navigate to={Paths.public.HOME_PATH} replace />
+                )
+              }
+            />
+          ))}
+          {publicRoutes.map(route => (
             <Route
               path={route.path}
               key={route.path}
