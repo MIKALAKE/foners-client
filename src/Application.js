@@ -2,9 +2,8 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Paths from 'process/routes/paths';
-import { privateRoutes, publicRoutes } from 'process/routes';
-
 import { Footer, Navbar } from 'show/components';
+import { privateRoutes, publicRoutes } from 'process/routes';
 
 const Application = () => {
   const currentUser = useSelector(state => state.user);

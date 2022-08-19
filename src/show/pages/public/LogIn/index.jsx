@@ -8,14 +8,17 @@ import { logIn } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
 
 const LogIn = () => {
-  const [user, setUser] = useState({ email: '', password: '' });
+  const [payload, setPayload] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const onFieldChange = (key, value) =>
+    setPayload({ ...payload, [key]: value });
+
   const Submit = e => {
     e.preventDefault();
-    dispatch(logIn(user));
+    dispatch(logIn(payload));
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -35,16 +38,16 @@ const LogIn = () => {
                 className='flex'
                 type='text'
                 placeholder='Email'
-                value={user.email}
-                onChange={e => setUser({ ...user, email: e.target.value })}
+                value={payload.email}
+                onChange={e => onFieldChange('email', e.target.value)}
               />
             </div>
             <div>
               <TextField
                 type='password'
                 placeholder='Password'
-                value={user.password}
-                onChange={e => setUser({ ...user, password: e.target.value })}
+                value={payload.password}
+                onChange={e => onFieldChange('password', e.target.value)}
               />
             </div>
           </div>

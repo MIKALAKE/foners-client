@@ -21,8 +21,7 @@ export const logOut = createAsyncThunk('user/logOut', async payload => {
 
 export const register = createAsyncThunk('user/register', async payload => {
   try {
-    const res = await Api.post(`/auth`, payload);
-    return { ...res.data.data, headers: res.headers };
+    await Api.post(`/auth`, payload);
   } catch (err) {
     return err.message;
   }

@@ -7,19 +7,17 @@ import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
 
 const CreateAccount = () => {
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-    first_name: '',
-    last_name: ''
-  });
+  const [payload, setPayload] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const onFieldChange = (key, value) =>
+    setPayload({ ...payload, [key]: value });
+
   const registerUser = e => {
     e.preventDefault();
-    dispatch(register(user), navigate(Paths.public.LOGIN_PATH));
+    dispatch(register(payload));
   };
 
   return (
@@ -34,8 +32,8 @@ const CreateAccount = () => {
               label='First Name:'
               type='text'
               placeholder='First Name'
-              value={user.first_name}
-              onChange={e => setUser({ ...user, first_name: e.target.value })}
+              value={payload.first_name}
+              onChange={e => onFieldChange('first_name', e.target.value)}
             />
           </div>
           <div>
@@ -43,8 +41,8 @@ const CreateAccount = () => {
               label='Last Name:'
               type='text'
               placeholder='Last Name'
-              value={user.last_name}
-              onChange={e => setUser({ ...user, last_name: e.target.value })}
+              value={payload.last_name}
+              onChange={e => onFieldChange('last_name', e.target.value)}
             />
           </div>
           <div>
@@ -52,8 +50,8 @@ const CreateAccount = () => {
               label='Email:'
               type='text'
               placeholder='Email'
-              value={user.email}
-              onChange={e => setUser({ ...user, email: e.target.value })}
+              value={payload.email}
+              onChange={e => onFieldChange('email', e.target.value)}
             />
           </div>
           <div>
@@ -61,8 +59,8 @@ const CreateAccount = () => {
               label='Password:'
               type='password'
               placeholder='Password'
-              value={user.password}
-              onChange={e => setUser({ ...user, password: e.target.value })}
+              value={payload.password}
+              onChange={e => onFieldChange('password', e.target.value)}
             />
           </div>
         </div>
