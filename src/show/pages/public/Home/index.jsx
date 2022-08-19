@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Paths from 'process/routes/paths';
 import { getEvent } from 'process/slices/eventsSlice';
 import { getConstructors } from 'process/slices/constructorsSlice';
-
 import { ConstructorCard, DriverCard, UpcomingEvent } from 'show/components';
 
 const Home = () => {

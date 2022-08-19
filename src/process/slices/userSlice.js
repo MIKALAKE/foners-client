@@ -14,7 +14,6 @@ export const logIn = createAsyncThunk('user/logIn', async payload => {
 export const logOut = createAsyncThunk('user/logOut', async payload => {
   try {
     await Api.delete(`/auth/sign_out`);
-    return { payload };
   } catch (err) {
     return err.message;
   }
@@ -29,20 +28,21 @@ export const register = createAsyncThunk('user/register', async payload => {
   }
 });
 
+const initialState = { isLoggedIn: false };
+
 export const userSlice = createSlice({
   name: 'user',
-  initialState: {},
+  initialState,
   extraReducers: {
     [logIn.fulfilled]: (state, { payload }) => {
       Api.setHeaders(payload.headers);
       return { ...payload, isLoggedIn: true };
     },
     [logOut.fulfilled]: () => {
-      return { isLoggedIn: false };
+      return initialState;
     },
-    [register.fulfilled]: (state, { payload }) => {
-      Api.setHeaders(payload.headers);
-      return { ...payload, isLoggetIn: true };
+    [register.fulfilled]: () => {
+      return initialState;
     }
   }
 });

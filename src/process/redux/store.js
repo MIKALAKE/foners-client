@@ -1,4 +1,6 @@
 import { createLogger } from 'redux-logger';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import userReducer from 'process/slices/userSlice';
@@ -10,6 +12,11 @@ const logger = createLogger({
   collapsed: true
 });
 
+const persistConfig = {
+  key: 'root',
+  storage
+};
+
 const reducer = combineReducers({
   user: userReducer,
   events: eventsReducer,
@@ -17,9 +24,11 @@ const reducer = combineReducers({
   constructors: constructorsReducer
 });
 
-const store = configureStore({
-  reducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false}).concat(logger)
 });
 
-export default store;
+export const persistedStore = persistStore(store);

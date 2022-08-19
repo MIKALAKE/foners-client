@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import Paths from 'process/routes/paths';
 import { register } from 'process/slices/userSlice';
-
 import { Button, TextField } from 'show/components';
 
 const CreateAccount = () => {
-  const [client, setClient] = useState({
+  const [user, setUser] = useState({
     email: '',
     password: '',
     first_name: '',
@@ -20,15 +19,7 @@ const CreateAccount = () => {
 
   const registerUser = e => {
     e.preventDefault();
-    dispatch(
-      register({
-        email: client.email,
-        password: client.password,
-        first_name: client.first_name,
-        last_name: client.last_name
-      }),
-      navigate(Paths.public.LOGIN_PATH)
-    );
+    dispatch(register(user), navigate(Paths.public.LOGIN_PATH));
   };
 
   return (
@@ -43,10 +34,8 @@ const CreateAccount = () => {
               label='First Name:'
               type='text'
               placeholder='First Name'
-              value={client.first_name}
-              onChange={e =>
-                setClient({ ...client, first_name: e.target.value })
-              }
+              value={user.first_name}
+              onChange={e => setUser({ ...user, first_name: e.target.value })}
             />
           </div>
           <div>
@@ -54,10 +43,8 @@ const CreateAccount = () => {
               label='Last Name:'
               type='text'
               placeholder='Last Name'
-              value={client.last_name}
-              onChange={e =>
-                setClient({ ...client, last_name: e.target.value })
-              }
+              value={user.last_name}
+              onChange={e => setUser({ ...user, last_name: e.target.value })}
             />
           </div>
           <div>
@@ -65,8 +52,8 @@ const CreateAccount = () => {
               label='Email:'
               type='text'
               placeholder='Email'
-              value={client.email}
-              onChange={e => setClient({ ...client, email: e.target.value })}
+              value={user.email}
+              onChange={e => setUser({ ...user, email: e.target.value })}
             />
           </div>
           <div>
@@ -74,8 +61,8 @@ const CreateAccount = () => {
               label='Password:'
               type='password'
               placeholder='Password'
-              value={client.password}
-              onChange={e => setClient({ ...client, password: e.target.value })}
+              value={user.password}
+              onChange={e => setUser({ ...user, password: e.target.value })}
             />
           </div>
         </div>

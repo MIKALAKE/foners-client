@@ -10,7 +10,6 @@ const api = axios.create({
 
 const Api = {
   catchError: error => {
-    console.error(error);
     return error;
   },
   setHeaders: headers => {

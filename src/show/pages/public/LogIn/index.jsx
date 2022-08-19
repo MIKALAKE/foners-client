@@ -5,21 +5,17 @@ import { MdOutlineAccountBox } from 'react-icons/md';
 
 import Paths from 'process/routes/paths';
 import { logIn } from 'process/slices/userSlice';
-
 import { Button, TextField } from 'show/components';
 
 const LogIn = () => {
-  const [client, setClient] = useState({
-    email: '',
-    password: ''
-  });
+  const [user, setUser] = useState({ email: '', password: '' });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const Submit = e => {
     e.preventDefault();
-    dispatch(logIn({ email: client.email, password: client.password }));
+    dispatch(logIn(user));
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -39,18 +35,16 @@ const LogIn = () => {
                 className='flex'
                 type='text'
                 placeholder='Email'
-                value={client.email}
-                onChange={e => setClient({ ...client, email: e.target.value })}
+                value={user.email}
+                onChange={e => setUser({ ...user, email: e.target.value })}
               />
             </div>
             <div>
               <TextField
                 type='password'
                 placeholder='Password'
-                value={client.password}
-                onChange={e =>
-                  setClient({ ...client, password: e.target.value })
-                }
+                value={user.password}
+                onChange={e => setUser({ ...user, password: e.target.value })}
               />
             </div>
           </div>

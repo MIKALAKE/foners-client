@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const handleLogOutClick = e => {
     e.preventDefault();
-    dispatch(logOut({}));
+    dispatch(logOut());
     navigate(Paths.public.HOME_PATH);
   };
 
