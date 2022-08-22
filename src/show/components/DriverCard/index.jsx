@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DRIVER_PATH } from 'process/routes/paths';
+import Paths from 'process/routes/paths';
 
 const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
   const navigate = useNavigate();
@@ -13,7 +13,9 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
               <div className='flex flex-col'>
                 <img
                   onClick={() =>
-                    navigate(DRIVER_PATH.replace(':id', firstDriver?.id))
+                    navigate(
+                      Paths.public.DRIVER_PATH.replace(':id', firstDriver?.id)
+                    )
                   }
                   src={firstDriver?.avatar_url}
                   alt={firstDriver?.first_name}
@@ -34,7 +36,9 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
             <div className='flex flex-col'>
               <img
                 onClick={() =>
-                  navigate(DRIVER_PATH.replace(':id', secondDriver?.id))
+                  navigate(
+                    Paths.public.DRIVER_PATH.replace(':id', secondDriver?.id)
+                  )
                 }
                 src={secondDriver?.avatar_url}
                 alt={secondDriver?.first_name}

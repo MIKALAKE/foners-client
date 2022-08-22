@@ -12,7 +12,9 @@ const Button = ({
     primary:
       'bg-secondary w-1/2 h-10 my-2 rounded-full text-white font-bold items-center justify-center ml-5 hover:outline outline-white outline-4',
     secondary:
-      'bg-charade w-1/2 h-10 my-2 rounded-full text-white font-bold items-center justify-center ml-5 hover:outline outline-white outline-4'
+      'bg-charade w-1/2 h-10 my-2 rounded-full text-white font-bold items-center justify-center ml-5 hover:outline outline-white outline-4',
+    underline:
+      'w-full h-10 my-2 underline underline-offset-1 rounded-full font-bold items-center justify-center ml-5 text-secondary cursor-pointer'
   };
 
   return (
