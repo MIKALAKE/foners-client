@@ -11,7 +11,7 @@ export const logIn = createAsyncThunk('user/logIn', async payload => {
   }
 });
 
-export const logOut = createAsyncThunk('user/logOut', async payload => {
+export const logOut = createAsyncThunk('user/logOut', async () => {
   try {
     await Api.delete(`/auth/sign_out`);
   } catch (err) {
