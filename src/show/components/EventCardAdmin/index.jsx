@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
@@ -185,6 +186,14 @@ const EventCardAdmin = ({ event }) => {
       </Modal>
     </Fragment>
   );
+};
+
+EventCardAdmin.defaultProps = {
+  event: undefined
+};
+
+EventCardAdmin.propTypes = {
+  event: PropTypes.object
 };
 
 export default EventCardAdmin;

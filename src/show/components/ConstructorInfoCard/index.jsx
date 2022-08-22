@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ConstructorInfoCard = ({ constructor }) => {
   return (
     <div className='flex justify-center'>
@@ -33,6 +35,14 @@ const ConstructorInfoCard = ({ constructor }) => {
       </div>
     </div>
   );
+};
+
+ConstructorInfoCard.defaultProps = {
+  constructor: undefined
+};
+
+ConstructorInfoCard.propTypes = {
+  constructor: PropTypes.object
 };
 
 export default ConstructorInfoCard;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ConstructorStandingCard = ({ constructor }) => {
   return (
     <div className='flex w-64 h-34  ml-1 mr-1 justify-between bg-white-600 rounded-md shadow-xl select-none'>
@@ -21,6 +23,14 @@ const ConstructorStandingCard = ({ constructor }) => {
       </div>
     </div>
   );
+};
+
+ConstructorStandingCard.defaultProps = {
+  constructor: undefined
+};
+
+ConstructorStandingCard.propTypes = {
+  constructor: PropTypes.object
 };
 
 export default ConstructorStandingCard;

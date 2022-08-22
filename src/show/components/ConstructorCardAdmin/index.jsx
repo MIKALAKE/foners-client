@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
@@ -238,6 +239,14 @@ const ConstructorCardAdmin = ({ constructor }) => {
       </Modal>
     </Fragment>
   );
+};
+
+ConstructorCardAdmin.defaultProps = {
+  constructor: undefined
+};
+
+ConstructorCardAdmin.propTypes = {
+  constructor: PropTypes.object
 };
 
 export default ConstructorCardAdmin;

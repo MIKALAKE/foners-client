@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
@@ -238,6 +239,14 @@ const DriverCardAdmin = ({ driver }) => {
       </Modal>
     </Fragment>
   );
+};
+
+DriverCardAdmin.defaultProps = {
+  driver: undefined
+};
+
+DriverCardAdmin.propTypes = {
+  driver: PropTypes.object
 };
 
 export default DriverCardAdmin;

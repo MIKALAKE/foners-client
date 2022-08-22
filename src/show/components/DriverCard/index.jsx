@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 import Paths from 'process/routes/paths';
@@ -63,6 +64,18 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
       </div>
     </div>
   );
+};
+
+DriverCard.defaultProps = {
+  car_url: '',
+  firstDriver: undefined,
+  secondDriver: undefined
+};
+
+DriverCard.propTypes = {
+  car_url: PropTypes.string,
+  firstDriver: PropTypes.object,
+  secondDriver: PropTypes.object
 };
 
 export default DriverCard;
