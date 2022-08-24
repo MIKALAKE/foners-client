@@ -18,7 +18,6 @@ import { addEvent, getEvents } from 'process/slices/eventsSlice';
 import { addDriver, getDrivers } from 'process/slices/driversSlice';
 
 const Admin = () => {
-  // const searchQuery = useState(false);
   const [createEventModal, setCreateEventModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -28,6 +27,7 @@ const Admin = () => {
   const transient = useSelector(state => state.transient);
   const events = useSelector(state => state.events.events);
   const drivers = useSelector(state => state.drivers.drivers);
+  const searchQuery = useSelector(state => state.transient.searchQuery);
   const constructors = useSelector(state => state.constructors.constructors);
 
   const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
@@ -51,12 +51,10 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    dispatch(getEvents(transient));
-    dispatch(getDrivers(transient));
-    dispatch(getConstructors(transient));
-  }, [dispatch, transient]);
-
-  // dispatch(updateProps({ searchQuery: '' }));
+    dispatch(getEvents(searchQuery));
+    dispatch(getDrivers(searchQuery));
+    dispatch(getConstructors(searchQuery));
+  }, [dispatch, searchQuery]);
 
   return (
     <Fragment>

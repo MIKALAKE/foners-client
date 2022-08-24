@@ -1,23 +1,22 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
 import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
+import { updateProps } from 'process/slices/transientSlice';
 
 const Register = () => {
-  const [payload, setPayload] = useState({});
+  const transient = useSelector(state => state.transient);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFieldChange = (key, value) =>
-    setPayload({ ...payload, [key]: value });
+  const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
 
   const registerUser = e => {
     e.preventDefault();
-    dispatch(register(payload));
+    dispatch(register(transient));
   };
 
   return (
@@ -32,7 +31,7 @@ const Register = () => {
               label='First Name:'
               type='text'
               placeholder='First Name'
-              value={payload.first_name}
+              value={transient.first_name}
               onChange={e => onFieldChange('first_name', e.target.value)}
             />
           </div>
@@ -41,7 +40,7 @@ const Register = () => {
               label='Last Name:'
               type='text'
               placeholder='Last Name'
-              value={payload.last_name}
+              value={transient.last_name}
               onChange={e => onFieldChange('last_name', e.target.value)}
             />
           </div>
@@ -50,7 +49,7 @@ const Register = () => {
               label='Email:'
               type='text'
               placeholder='Email'
-              value={payload.email}
+              value={transient.email}
               onChange={e => onFieldChange('email', e.target.value)}
             />
           </div>
@@ -59,7 +58,7 @@ const Register = () => {
               label='Password:'
               type='password'
               placeholder='Password'
-              value={payload.password}
+              value={transient.password}
               onChange={e => onFieldChange('password', e.target.value)}
             />
           </div>

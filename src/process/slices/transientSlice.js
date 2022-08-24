@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = { searchQuery: '' };
 
 export const transientSlice = createSlice({
   name: 'transient',

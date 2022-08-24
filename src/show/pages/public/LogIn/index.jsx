@@ -1,24 +1,23 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineAccountBox } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
 import { logIn } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
+import { updateProps } from 'process/slices/transientSlice';
 
 const LogIn = () => {
-  const [payload, setPayload] = useState({});
+  const transient = useSelector(state => state.transient);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFieldChange = (key, value) =>
-    setPayload({ ...payload, [key]: value });
+  const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
 
   const submit = e => {
     e.preventDefault();
-    dispatch(logIn(payload));
+    dispatch(logIn(transient));
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -38,7 +37,7 @@ const LogIn = () => {
                 className='flex'
                 type='text'
                 placeholder='Email'
-                value={payload.email}
+                value={transient.email}
                 onChange={e => onFieldChange('email', e.target.value)}
               />
             </div>
@@ -46,7 +45,7 @@ const LogIn = () => {
               <TextField
                 type='password'
                 placeholder='Password'
-                value={payload.password}
+                value={transient.password}
                 onChange={e => onFieldChange('password', e.target.value)}
               />
             </div>
