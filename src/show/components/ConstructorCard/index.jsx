@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ConstructorCard = ({ constructor }) => {
   return (
     <div className='flex w-36 h-36 mt-3 ml-10 bg-white-600 cursor-pointer items-center justify-center rounded-md shadow-xl hover:scale-110 delay-100 easy-in-out transition-all'>
@@ -10,6 +12,14 @@ const ConstructorCard = ({ constructor }) => {
       </div>
     </div>
   );
+};
+
+ConstructorCard.defaultProps = {
+  constructor: {}
+};
+
+ConstructorCard.propTypes = {
+  constructor: PropTypes.object
 };
 
 export default ConstructorCard;

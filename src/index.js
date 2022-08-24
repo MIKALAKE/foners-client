@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import Api from 'process/api';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
 import Application from './Application';

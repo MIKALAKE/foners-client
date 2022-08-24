@@ -1,24 +1,23 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineAccountBox } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
+import { onFieldChange } from 'process/helpers';
 import { logIn } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
+import { updateProps } from 'process/slices/transientSlice';
 
 const LogIn = () => {
-  const [payload, setPayload] = useState({});
+  const transient = useSelector(state => state.transient);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
-  const onFieldChange = (key, value) =>
-    setPayload({ ...payload, [key]: value });
-
-  const Submit = e => {
+  const submit = e => {
     e.preventDefault();
-    dispatch(logIn(payload));
+    dispatch(logIn(transient));
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -38,21 +37,25 @@ const LogIn = () => {
                 className='flex'
                 type='text'
                 placeholder='Email'
-                value={payload.email}
-                onChange={e => onFieldChange('email', e.target.value)}
+                value={transient.email}
+                onChange={e =>
+                  onFieldChange('email', e.target.value, dispatchUpdateProps)
+                }
               />
             </div>
             <div>
               <TextField
                 type='password'
                 placeholder='Password'
-                value={payload.password}
-                onChange={e => onFieldChange('password', e.target.value)}
+                value={transient.password}
+                onChange={e =>
+                  onFieldChange('password', e.target.value, dispatchUpdateProps)
+                }
               />
             </div>
           </div>
           <div className='flex h-full mt-5 flex-col justify-center items-center w-96'>
-            <Button label='Log In' variant='secondary' onClick={Submit} />
+            <Button label='Log In' variant='secondary' onClick={submit} />
             <Button
               label='Don`t have an account? Sign up.'
               variant='underline'

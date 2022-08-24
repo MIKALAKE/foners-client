@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const DriverStandingCard = ({ driver }) => {
   return (
     <div>
@@ -23,4 +25,11 @@ const DriverStandingCard = ({ driver }) => {
   );
 };
 
+DriverStandingCard.defaultProps = {
+  driver: {}
+};
+
+DriverStandingCard.propTypes = {
+  driver: PropTypes.object
+};
 export default DriverStandingCard;

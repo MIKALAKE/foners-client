@@ -1,4 +1,5 @@
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 
 const UpcomingEvent = ({ event }) => {
   return (
@@ -23,6 +24,14 @@ const UpcomingEvent = ({ event }) => {
       </div>
     </div>
   );
+};
+
+UpcomingEvent.defaultProps = {
+  event: {}
+};
+
+UpcomingEvent.propTypes = {
+  event: PropTypes.object
 };
 
 export default UpcomingEvent;

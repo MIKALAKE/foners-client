@@ -1,23 +1,22 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
+import { onFieldChange } from 'process/helpers';
 import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
+import { updateProps } from 'process/slices/transientSlice';
 
-const CreateAccount = () => {
-  const [payload, setPayload] = useState({});
+const Register = () => {
+  const transient = useSelector(state => state.transient);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const onFieldChange = (key, value) =>
-    setPayload({ ...payload, [key]: value });
+  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
   const registerUser = e => {
     e.preventDefault();
-    dispatch(register(payload));
+    dispatch(register(transient));
   };
 
   return (
@@ -32,8 +31,10 @@ const CreateAccount = () => {
               label='First Name:'
               type='text'
               placeholder='First Name'
-              value={payload.first_name}
-              onChange={e => onFieldChange('first_name', e.target.value)}
+              value={transient.first_name}
+              onChange={e =>
+                onFieldChange('first_name', e.target.value, dispatchUpdateProps)
+              }
             />
           </div>
           <div>
@@ -41,8 +42,10 @@ const CreateAccount = () => {
               label='Last Name:'
               type='text'
               placeholder='Last Name'
-              value={payload.last_name}
-              onChange={e => onFieldChange('last_name', e.target.value)}
+              value={transient.last_name}
+              onChange={e =>
+                onFieldChange('last_name', e.target.value, dispatchUpdateProps)
+              }
             />
           </div>
           <div>
@@ -50,8 +53,10 @@ const CreateAccount = () => {
               label='Email:'
               type='text'
               placeholder='Email'
-              value={payload.email}
-              onChange={e => onFieldChange('email', e.target.value)}
+              value={transient.email}
+              onChange={e =>
+                onFieldChange('email', e.target.value, dispatchUpdateProps)
+              }
             />
           </div>
           <div>
@@ -59,8 +64,10 @@ const CreateAccount = () => {
               label='Password:'
               type='password'
               placeholder='Password'
-              value={payload.password}
-              onChange={e => onFieldChange('password', e.target.value)}
+              value={transient.password}
+              onChange={e =>
+                onFieldChange('password', e.target.value, dispatchUpdateProps)
+              }
             />
           </div>
         </div>
@@ -77,4 +84,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default Register;

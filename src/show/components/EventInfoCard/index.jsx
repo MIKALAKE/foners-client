@@ -1,4 +1,5 @@
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 
 const EventInfoCard = ({ event }) => {
   return (
@@ -28,6 +29,14 @@ const EventInfoCard = ({ event }) => {
       </div>
     </div>
   );
+};
+
+EventInfoCard.defaultProps = {
+  event: {}
+};
+
+EventInfoCard.propTypes = {
+  event: PropTypes.object
 };
 
 export default EventInfoCard;

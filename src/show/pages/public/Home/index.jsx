@@ -8,17 +8,16 @@ import { getConstructors } from 'process/slices/constructorsSlice';
 import { ConstructorCard, DriverCard, UpcomingEvent } from 'show/components';
 
 const Home = () => {
+  const event = useSelector(state => state.events.event);
   const constructors = useSelector(state => state.constructors.constructors);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getEvent());
-    dispatch(getConstructors());
+    dispatch(getEvent(''));
+    dispatch(getConstructors(''));
   }, [dispatch]);
-
-  const event = useSelector(state => state.events.event);
 
   return (
     <div className='flex flex-col w-full h-full'>
@@ -77,4 +76,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;

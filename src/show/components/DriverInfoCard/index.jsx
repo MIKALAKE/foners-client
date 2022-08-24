@@ -1,4 +1,5 @@
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 
 const DriverInfoCard = ({ driver }) => {
   return (
@@ -42,6 +43,14 @@ const DriverInfoCard = ({ driver }) => {
       </div>
     </div>
   );
+};
+
+DriverInfoCard.defaultProps = {
+  driver: {}
+};
+
+DriverInfoCard.propTypes = {
+  driver: PropTypes.object
 };
 
 export default DriverInfoCard;
