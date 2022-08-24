@@ -15,7 +15,7 @@ const ConstructorCard = ({ constructor }) => {
 };
 
 ConstructorCard.defaultProps = {
-  constructor: undefined
+  constructor: {}
 };
 
 ConstructorCard.propTypes = {

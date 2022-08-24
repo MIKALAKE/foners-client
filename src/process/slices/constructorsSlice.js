@@ -16,9 +16,9 @@ export const addConstructor = createAsyncThunk(
 
 export const getConstructors = createAsyncThunk(
   'constructors/getConstructors',
-  async () => {
+  async query => {
     try {
-      const res = await Api.get(`/constructors/`);
+      const res = await Api.get(`/constructors/?search=${query}`);
       return res.data;
     } catch (err) {
       return err.message;

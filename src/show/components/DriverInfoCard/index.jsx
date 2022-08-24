@@ -46,7 +46,7 @@ const DriverInfoCard = ({ driver }) => {
 };
 
 DriverInfoCard.defaultProps = {
-  driver: undefined
+  driver: {}
 };
 
 DriverInfoCard.propTypes = {

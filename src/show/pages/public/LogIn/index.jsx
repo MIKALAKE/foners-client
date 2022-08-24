@@ -16,7 +16,7 @@ const LogIn = () => {
   const onFieldChange = (key, value) =>
     setPayload({ ...payload, [key]: value });
 
-  const Submit = e => {
+  const submit = e => {
     e.preventDefault();
     dispatch(logIn(payload));
     navigate(Paths.public.HOME_PATH);
@@ -52,7 +52,7 @@ const LogIn = () => {
             </div>
           </div>
           <div className='flex h-full mt-5 flex-col justify-center items-center w-96'>
-            <Button label='Log In' variant='secondary' onClick={Submit} />
+            <Button label='Log In' variant='secondary' onClick={submit} />
             <Button
               label='Don`t have an account? Sign up.'
               variant='underline'

@@ -32,7 +32,7 @@ const EventInfoCard = ({ event }) => {
 };
 
 EventInfoCard.defaultProps = {
-  event: undefined
+  event: {}
 };
 
 EventInfoCard.propTypes = {

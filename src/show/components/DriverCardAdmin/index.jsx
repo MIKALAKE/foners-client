@@ -242,7 +242,7 @@ const DriverCardAdmin = ({ driver }) => {
 };
 
 DriverCardAdmin.defaultProps = {
-  driver: undefined
+  driver: {}
 };
 
 DriverCardAdmin.propTypes = {

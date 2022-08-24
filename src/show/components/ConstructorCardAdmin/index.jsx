@@ -242,7 +242,7 @@ const ConstructorCardAdmin = ({ constructor }) => {
 };
 
 ConstructorCardAdmin.defaultProps = {
-  constructor: undefined
+  constructor: {}
 };
 
 ConstructorCardAdmin.propTypes = {

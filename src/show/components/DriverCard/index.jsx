@@ -68,8 +68,8 @@ const DriverCard = ({ carUrl, firstDriver, secondDriver }) => {
 
 DriverCard.defaultProps = {
   car_url: '',
-  firstDriver: undefined,
-  secondDriver: undefined
+  firstDriver: {},
+  secondDriver: {}
 };
 
 DriverCard.propTypes = {

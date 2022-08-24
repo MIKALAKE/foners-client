@@ -38,7 +38,7 @@ const ConstructorInfoCard = ({ constructor }) => {
 };
 
 ConstructorInfoCard.defaultProps = {
-  constructor: undefined
+  constructor: {}
 };
 
 ConstructorInfoCard.propTypes = {

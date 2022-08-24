@@ -6,7 +6,7 @@ import Paths from 'process/routes/paths';
 import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
 
-const CreateAccount = () => {
+const Register = () => {
   const [payload, setPayload] = useState({});
 
   const dispatch = useDispatch();
@@ -77,4 +77,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default Register;

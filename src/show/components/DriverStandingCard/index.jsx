@@ -26,7 +26,7 @@ const DriverStandingCard = ({ driver }) => {
 };
 
 DriverStandingCard.defaultProps = {
-  driver: undefined
+  driver: {}
 };
 
 DriverStandingCard.propTypes = {

@@ -18,7 +18,7 @@ import { addEvent, getEvents } from 'process/slices/eventsSlice';
 import { addDriver, getDrivers } from 'process/slices/driversSlice';
 
 const Admin = () => {
-  const [search, setSearch] = useState('');
+  // const searchQuery = useState(false);
   const [createEventModal, setCreateEventModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
@@ -51,10 +51,12 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    dispatch(getEvents());
-    dispatch(getDrivers());
-    dispatch(getConstructors());
-  }, [dispatch]);
+    dispatch(getEvents(transient));
+    dispatch(getDrivers(transient));
+    dispatch(getConstructors(transient));
+  }, [dispatch, transient]);
+
+  // dispatch(updateProps({ searchQuery: '' }));
 
   return (
     <Fragment>
@@ -63,10 +65,10 @@ const Admin = () => {
           <div className='flex w-full h-20 my-5 items-center flex-row'>
             <TextField
               type='search'
-              value={search}
+              value={transient.searchQuery}
               placeholder='Search'
               className='flex bg-white w-96 ml-5 rounded-lg h-8 text-secondary font-bold hover:outline outline-secondary outline-2'
-              onChange={e => setSearch(e.target.value)}
+              onChange={e => onFieldChange('searchQuery', e.target.value)}
             />
 
             <Button

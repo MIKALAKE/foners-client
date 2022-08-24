@@ -26,7 +26,7 @@ const ConstructorStandingCard = ({ constructor }) => {
 };
 
 ConstructorStandingCard.defaultProps = {
-  constructor: undefined
+  constructor: {}
 };
 
 ConstructorStandingCard.propTypes = {

@@ -26,14 +26,17 @@ export const getDriver = createAsyncThunk(
   }
 );
 
-export const getDrivers = createAsyncThunk('drivers/getDrivers', async () => {
-  try {
-    const res = await Api.get(`/drivers/`);
-    return res.data;
-  } catch (err) {
-    return err.message;
+export const getDrivers = createAsyncThunk(
+  'drivers/getDrivers',
+  async query => {
+    try {
+      const res = await Api.get(`/drivers/?search=${query}`);
+      return res.data;
+    } catch (err) {
+      return err.message;
+    }
   }
-});
+);
 
 export const editDriver = createAsyncThunk(
   'drivers/editDriver',

@@ -11,5 +11,7 @@ export const transientSlice = createSlice({
     }
   }
 });
-export default transientSlice.reducer;
+
 export const { updateProps } = transientSlice.actions;
+
+export default transientSlice.reducer;

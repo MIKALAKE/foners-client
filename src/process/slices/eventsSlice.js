@@ -11,9 +11,9 @@ export const getEvent = createAsyncThunk('events/getEvent', async () => {
   }
 });
 
-export const getEvents = createAsyncThunk('events/getEvents', async () => {
+export const getEvents = createAsyncThunk('events/getEvents', async query => {
   try {
-    const res = await Api.get(`/events`);
+    const res = await Api.get(`/events/?search=${query}`);
     return res.data;
   } catch (err) {
     return err.message;

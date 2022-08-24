@@ -189,7 +189,7 @@ const EventCardAdmin = ({ event }) => {
 };
 
 EventCardAdmin.defaultProps = {
-  event: undefined
+  event: {}
 };
 
 EventCardAdmin.propTypes = {
