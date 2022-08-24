@@ -15,8 +15,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getEvent());
-    dispatch(getConstructors());
+    dispatch(getEvent(''));
+    dispatch(getConstructors(''));
   }, [dispatch]);
 
   return (

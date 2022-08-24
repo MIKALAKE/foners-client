@@ -13,6 +13,7 @@ const LogIn = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
   const submit = e => {
     e.preventDefault();
@@ -38,7 +39,7 @@ const LogIn = () => {
                 placeholder='Email'
                 value={transient.email}
                 onChange={e =>
-                  onFieldChange('email', e.target.value, updateProps)
+                  onFieldChange('email', e.target.value, dispatchUpdateProps)
                 }
               />
             </div>
@@ -48,7 +49,7 @@ const LogIn = () => {
                 placeholder='Password'
                 value={transient.password}
                 onChange={e =>
-                  onFieldChange('password', e.target.value, updateProps)
+                  onFieldChange('password', e.target.value, dispatchUpdateProps)
                 }
               />
             </div>

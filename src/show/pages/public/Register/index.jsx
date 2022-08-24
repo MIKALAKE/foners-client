@@ -12,6 +12,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
   const registerUser = e => {
     e.preventDefault();
@@ -32,7 +33,7 @@ const Register = () => {
               placeholder='First Name'
               value={transient.first_name}
               onChange={e =>
-                onFieldChange('first_name', e.target.value, updateProps)
+                onFieldChange('first_name', e.target.value, dispatchUpdateProps)
               }
             />
           </div>
@@ -43,7 +44,7 @@ const Register = () => {
               placeholder='Last Name'
               value={transient.last_name}
               onChange={e =>
-                onFieldChange('last_name', e.target.value, updateProps)
+                onFieldChange('last_name', e.target.value, dispatchUpdateProps)
               }
             />
           </div>
@@ -54,7 +55,7 @@ const Register = () => {
               placeholder='Email'
               value={transient.email}
               onChange={e =>
-                onFieldChange('email', e.target.value, updateProps)
+                onFieldChange('email', e.target.value, dispatchUpdateProps)
               }
             />
           </div>
@@ -65,7 +66,7 @@ const Register = () => {
               placeholder='Password'
               value={transient.password}
               onChange={e =>
-                onFieldChange('password', e.target.value, updateProps)
+                onFieldChange('password', e.target.value, dispatchUpdateProps)
               }
             />
           </div>
