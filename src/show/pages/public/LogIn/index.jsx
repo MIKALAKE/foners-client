@@ -3,6 +3,7 @@ import { MdOutlineAccountBox } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
+import { onFieldChange } from 'process/helpers';
 import { logIn } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
 import { updateProps } from 'process/slices/transientSlice';
@@ -12,8 +13,6 @@ const LogIn = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
 
   const submit = e => {
     e.preventDefault();
@@ -38,7 +37,9 @@ const LogIn = () => {
                 type='text'
                 placeholder='Email'
                 value={transient.email}
-                onChange={e => onFieldChange('email', e.target.value)}
+                onChange={e =>
+                  onFieldChange('email', e.target.value, updateProps)
+                }
               />
             </div>
             <div>
@@ -46,7 +47,9 @@ const LogIn = () => {
                 type='password'
                 placeholder='Password'
                 value={transient.password}
-                onChange={e => onFieldChange('password', e.target.value)}
+                onChange={e =>
+                  onFieldChange('password', e.target.value, updateProps)
+                }
               />
             </div>
           </div>

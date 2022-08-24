@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
+import { onFieldChange } from 'process/helpers';
 import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
 import { updateProps } from 'process/slices/transientSlice';
@@ -11,8 +12,6 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
 
   const registerUser = e => {
     e.preventDefault();
@@ -32,7 +31,9 @@ const Register = () => {
               type='text'
               placeholder='First Name'
               value={transient.first_name}
-              onChange={e => onFieldChange('first_name', e.target.value)}
+              onChange={e =>
+                onFieldChange('first_name', e.target.value, updateProps)
+              }
             />
           </div>
           <div>
@@ -41,7 +42,9 @@ const Register = () => {
               type='text'
               placeholder='Last Name'
               value={transient.last_name}
-              onChange={e => onFieldChange('last_name', e.target.value)}
+              onChange={e =>
+                onFieldChange('last_name', e.target.value, updateProps)
+              }
             />
           </div>
           <div>
@@ -50,7 +53,9 @@ const Register = () => {
               type='text'
               placeholder='Email'
               value={transient.email}
-              onChange={e => onFieldChange('email', e.target.value)}
+              onChange={e =>
+                onFieldChange('email', e.target.value, updateProps)
+              }
             />
           </div>
           <div>
@@ -59,7 +64,9 @@ const Register = () => {
               type='password'
               placeholder='Password'
               value={transient.password}
-              onChange={e => onFieldChange('password', e.target.value)}
+              onChange={e =>
+                onFieldChange('password', e.target.value, updateProps)
+              }
             />
           </div>
         </div>

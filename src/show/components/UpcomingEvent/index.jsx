@@ -27,7 +27,7 @@ const UpcomingEvent = ({ event }) => {
 };
 
 UpcomingEvent.defaultProps = {
-  event: undefined
+  event: {}
 };
 
 UpcomingEvent.propTypes = {

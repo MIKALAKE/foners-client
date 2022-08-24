@@ -13,10 +13,10 @@ import {
   addConstructor,
   getConstructors
 } from 'process/slices/constructorsSlice';
+import { onFieldChange } from 'process/helpers';
 import { updateProps } from 'process/slices/transientSlice';
 import { addEvent, getEvents } from 'process/slices/eventsSlice';
 import { addDriver, getDrivers } from 'process/slices/driversSlice';
-
 const Admin = () => {
   const [createEventModal, setCreateEventModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
@@ -27,10 +27,9 @@ const Admin = () => {
   const transient = useSelector(state => state.transient);
   const events = useSelector(state => state.events.events);
   const drivers = useSelector(state => state.drivers.drivers);
-  const searchQuery = useSelector(state => state.transient.searchQuery);
   const constructors = useSelector(state => state.constructors.constructors);
 
-  const onFieldChange = (key, value) => dispatch(updateProps({ [key]: value }));
+  const searchQuery = transient.searchQuery;
 
   const postDriver = e => {
     e.preventDefault();
@@ -66,7 +65,9 @@ const Admin = () => {
               value={transient.searchQuery}
               placeholder='Search'
               className='flex bg-white w-96 ml-5 rounded-lg h-8 text-secondary font-bold hover:outline outline-secondary outline-2'
-              onChange={e => onFieldChange('searchQuery', e.target.value)}
+              onChange={e =>
+                onFieldChange('searchQuery', e.target.value, updateProps)
+              }
             />
 
             <Button
@@ -151,7 +152,7 @@ const Admin = () => {
                       placeholder='First Name'
                       value={transient.first_name}
                       onChange={e =>
-                        onFieldChange('first_name', e.target.value)
+                        onFieldChange('first_name', e.target.value, updateProps)
                       }
                     />
                   </div>
@@ -161,7 +162,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Last Name'
                       value={transient.last_name}
-                      onChange={e => onFieldChange('last_name', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('last_name', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -170,7 +173,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Nickname'
                       value={transient.nickname}
-                      onChange={e => onFieldChange('nickname', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('nickname', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -180,7 +185,11 @@ const Admin = () => {
                       placeholder='Race Number'
                       value={transient.race_number}
                       onChange={e =>
-                        onFieldChange('race_number', e.target.value)
+                        onFieldChange(
+                          'race_number',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -191,7 +200,7 @@ const Admin = () => {
                       placeholder='Avatar URL'
                       value={transient.avatar_url}
                       onChange={e =>
-                        onFieldChange('avatar_url', e.target.value)
+                        onFieldChange('avatar_url', e.target.value, updateProps)
                       }
                     />
                   </div>
@@ -202,7 +211,7 @@ const Admin = () => {
                       placeholder='Birth Date'
                       value={transient.birth_date}
                       onChange={e =>
-                        onFieldChange('birth_date', e.target.value)
+                        onFieldChange('birth_date', e.target.value, updateProps)
                       }
                     />
                   </div>
@@ -212,7 +221,9 @@ const Admin = () => {
                       type='number'
                       placeholder='Height'
                       value={transient.height}
-                      onChange={e => onFieldChange('height', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('height', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -222,7 +233,11 @@ const Admin = () => {
                       placeholder='Nationality'
                       value={transient.nationality}
                       onChange={e =>
-                        onFieldChange('nationality', e.target.value)
+                        onFieldChange(
+                          'nationality',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -233,7 +248,11 @@ const Admin = () => {
                       placeholder='Description'
                       value={transient.description}
                       onChange={e =>
-                        onFieldChange('description', e.target.value)
+                        onFieldChange(
+                          'description',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -243,7 +262,9 @@ const Admin = () => {
                       type='number'
                       placeholder='Points'
                       value={transient.points}
-                      onChange={e => onFieldChange('points', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('points', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <label>
@@ -255,7 +276,11 @@ const Admin = () => {
                             'rounded-md h-8 w-full bg-white-600 text-center outline-secondary outline-offset-4'
                           }
                           onChange={e =>
-                            onFieldChange('constructor.id', e.target.value)
+                            onFieldChange(
+                              'constructor.id',
+                              e.target.value,
+                              updateProps
+                            )
                           }>
                           <option value='null'></option>
                           {constructors?.map(constructor => (
@@ -305,7 +330,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Name'
                       value={transient.name}
-                      onChange={e => onFieldChange('name', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('name', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -314,7 +341,9 @@ const Admin = () => {
                       type='url'
                       placeholder='Logo URL'
                       value={transient.logo_url}
-                      onChange={e => onFieldChange('logo_url', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('logo_url', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -323,7 +352,9 @@ const Admin = () => {
                       type='url'
                       placeholder='Cover URL'
                       value={transient.cover_url}
-                      onChange={e => onFieldChange('cover_url', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('cover_url', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -333,7 +364,11 @@ const Admin = () => {
                       placeholder='Description'
                       value={transient.description}
                       onChange={e =>
-                        onFieldChange('description', e.target.value)
+                        onFieldChange(
+                          'description',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -344,7 +379,11 @@ const Admin = () => {
                       placeholder='First Apparence'
                       value={transient.first_apparence}
                       onChange={e =>
-                        onFieldChange('first_apparence', e.target.value)
+                        onFieldChange(
+                          'first_apparence',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -354,7 +393,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Origins'
                       value={transient.origins}
-                      onChange={e => onFieldChange('origins', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('origins', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -363,7 +404,9 @@ const Admin = () => {
                       type='number'
                       placeholder='Titles'
                       value={transient.titles}
-                      onChange={e => onFieldChange('titles', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('titles', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -372,7 +415,9 @@ const Admin = () => {
                       type='url'
                       placeholder='Car Picture URL'
                       value={transient.car_url}
-                      onChange={e => onFieldChange('car_url', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('car_url', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -381,7 +426,9 @@ const Admin = () => {
                       type='number'
                       placeholder='Points'
                       value={transient.points}
-                      onChange={e => onFieldChange('points', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('points', e.target.value, updateProps)
+                      }
                     />
                   </div>
                 </div>
@@ -420,7 +467,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Name'
                       value={transient.name}
-                      onChange={e => onFieldChange('name', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('name', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -429,7 +478,9 @@ const Admin = () => {
                       type='text'
                       placeholder='City'
                       value={transient.city}
-                      onChange={e => onFieldChange('city', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('city', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -438,7 +489,9 @@ const Admin = () => {
                       type='url'
                       placeholder='Cover URL'
                       value={transient.cover_url}
-                      onChange={e => onFieldChange('cover_url', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('cover_url', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -448,7 +501,11 @@ const Admin = () => {
                       placeholder='Descritpion'
                       value={transient.description}
                       onChange={e =>
-                        onFieldChange('description', e.target.value)
+                        onFieldChange(
+                          'description',
+                          e.target.value,
+                          updateProps
+                        )
                       }
                     />
                   </div>
@@ -458,7 +515,9 @@ const Admin = () => {
                       type='text'
                       placeholder='Country'
                       value={transient.country}
-                      onChange={e => onFieldChange('country', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('country', e.target.value, updateProps)
+                      }
                     />
                   </div>
                   <div>
@@ -467,7 +526,9 @@ const Admin = () => {
                       type='date'
                       placeholder='Date'
                       value={transient.date}
-                      onChange={e => onFieldChange('date', e.target.value)}
+                      onChange={e =>
+                        onFieldChange('date', e.target.value, updateProps)
+                      }
                     />
                   </div>
                 </div>
