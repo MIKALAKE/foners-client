@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Button,
@@ -9,52 +9,53 @@ import {
   Modal,
   TextField
 } from 'show/components';
-import {
-  addConstructor,
-  getConstructors
-} from 'process/slices/constructorsSlice';
+import { mock } from 'process/helpers';
 import { onFieldChange } from 'process/helpers';
-import { updateProps } from 'process/slices/transientSlice';
-import { addEvent, getEvents } from 'process/slices/eventsSlice';
-import { addDriver, getDrivers } from 'process/slices/driversSlice';
-const Admin = () => {
+
+const Admin = (
+  addConstructor,
+  addDriver,
+  addEvent,
+  getConstructors,
+  getDrivers,
+  getEvents,
+  updateProps,
+  transient,
+  drivers,
+  constructors,
+  events
+) => {
   const [createEventModal, setCreateEventModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
 
-  const dispatch = useDispatch();
-  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
-
-  const transient = useSelector(state => state.transient);
-  const events = useSelector(state => state.events.events);
-  const drivers = useSelector(state => state.drivers.drivers);
-  const constructors = useSelector(state => state.constructors.constructors);
+  const dispatchUpdateProps = payload => updateProps(payload);
 
   const searchQuery = transient.searchQuery;
 
   const postDriver = e => {
     e.preventDefault();
-    dispatch(addDriver(transient));
+    addDriver(transient);
     setCreateDriverModal(false);
   };
 
   const postEvent = e => {
     e.preventDefault();
-    dispatch(addEvent(transient));
+    addEvent(transient);
     setCreateEventModal(false);
   };
 
   const postConstructor = e => {
     e.preventDefault();
-    dispatch(addConstructor(transient));
+    addConstructor(transient);
     setCreateConstructorModal(false);
   };
 
   useEffect(() => {
-    dispatch(getEvents(searchQuery));
-    dispatch(getDrivers(searchQuery));
-    dispatch(getConstructors(searchQuery));
-  }, [dispatch, searchQuery]);
+    getEvents(searchQuery);
+    getDrivers(searchQuery);
+    getConstructors(searchQuery);
+  }, [getEvents, getDrivers, getConstructors, searchQuery]);
 
   return (
     <Fragment>
@@ -634,6 +635,34 @@ const Admin = () => {
       </div>
     </Fragment>
   );
+};
+
+Admin.defautProps = {
+  addConstructor: mock,
+  addDriver: mock,
+  addEvent: mock,
+  getConstructors: mock,
+  getDrivers: mock,
+  getEvents: mock,
+  updateProps: mock,
+  transient: {},
+  drivers: [],
+  constructors: [],
+  events: []
+};
+
+Admin.propTypes = {
+  addConstructor: PropTypes.func,
+  addDriver: PropTypes.func,
+  addEvent: PropTypes.func,
+  getConstructors: PropTypes.func,
+  getDrivers: PropTypes.func,
+  getEvents: PropTypes.func,
+  updateProps: PropTypes.func,
+  transient: PropTypes.object,
+  drivers: PropTypes.array,
+  constructors: PropTypes.array,
+  events: PropTypes.array
 };
 
 export default Admin;

@@ -1,18 +1,14 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { getConstructor } from 'process/slices/constructorsSlice';
-
-const Constructor = () => {
+import { mock } from 'process/helpers';
+const Constructor = ({ constructor, getConstructor }) => {
   const { id } = useParams();
-  const constructor = useSelector(state => state.constructors.constructor);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getConstructor({ id }));
-  }, [dispatch, id]);
+    getConstructor({ id });
+  }, [getConstructor, id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
@@ -81,6 +77,16 @@ const Constructor = () => {
       )}
     </div>
   );
+};
+
+Constructor.defaultProps = {
+  constructor: {},
+  getConstructor: mock
+};
+
+Constructor.propTypes = {
+  constructor: PropTypes.object,
+  getConstructor: PropTypes.func
 };
 
 export default Constructor;

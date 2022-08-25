@@ -1,19 +1,16 @@
 import Moment from 'react-moment';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { getDriver } from 'process/slices/driversSlice';
+import { mock } from 'process/helpers';
 
-const Driver = () => {
+const Driver = (driver, getDriver) => {
   const { id } = useParams();
-  const driver = useSelector(state => state.drivers.driver);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDriver({ id }));
-  }, [dispatch, id]);
+    getDriver({ id });
+  }, [getDriver, id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
@@ -92,5 +89,12 @@ const Driver = () => {
     </div>
   );
 };
+
+Driver.defaultProps = {
+  driver: {},
+  getDriver: mock
+};
+
+Driver.propTypes = { dirver: PropTypes.object, getDriver: PropTypes.func };
 
 export default Driver;

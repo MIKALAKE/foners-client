@@ -1,20 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { getDrivers } from 'process/slices/driversSlice';
-import { getConstructors } from 'process/slices/constructorsSlice';
+import { mock } from 'process/helpers';
 import { ConstructorStandingCard, DriverStandingCard } from 'show/components';
 
-const Standings = () => {
-  const drivers = useSelector(state => state.drivers.drivers);
-  const constructors = useSelector(state => state.constructors.constructors);
-
-  const dispatch = useDispatch();
-
+const Standings = ({ constructors, drivers, getConstructors, getDrivers }) => {
   useEffect(() => {
-    dispatch(getDrivers());
-    dispatch(getConstructors());
-  }, [dispatch]);
+    getDrivers('');
+    getConstructors('');
+  }, [getConstructors, getDrivers]);
 
   return (
     <div className='flex w-full h-full flex-col'>
@@ -45,6 +39,20 @@ const Standings = () => {
       </div>
     </div>
   );
+};
+
+Standings.defaultProps = {
+  constructors: [],
+  drivers: [],
+  getConstructors: mock,
+  getDrivers: mock
+};
+
+Standings.propTypes = {
+  constructors: PropTypes.array,
+  drivers: PropTypes.array,
+  getConstructors: PropTypes.func,
+  getDrivers: PropTypes.func
 };
 
 export default Standings;

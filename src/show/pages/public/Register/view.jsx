@@ -1,22 +1,17 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
-import { onFieldChange } from 'process/helpers';
-import { register } from 'process/slices/userSlice';
+import { mock, onFieldChange } from 'process/helpers';
 import { Button, TextField } from 'show/components';
-import { updateProps } from 'process/slices/transientSlice';
 
-const Register = () => {
-  const transient = useSelector(state => state.transient);
-
-  const dispatch = useDispatch();
+const Register = ({ register, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
+  const dispatchUpdateProps = payload => updateProps(payload);
 
   const registerUser = e => {
     e.preventDefault();
-    dispatch(register(transient));
+    register(transient);
   };
 
   return (
@@ -82,6 +77,18 @@ const Register = () => {
       </div>
     </div>
   );
+};
+
+Register.defaultProps = {
+  register: mock,
+  transient: {},
+  updateProps: mock
+};
+
+Register.propTypes = {
+  register: PropTypes.func,
+  transient: PropTypes.object,
+  updateProps: PropTypes.func
 };
 
 export default Register;
