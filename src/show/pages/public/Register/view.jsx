@@ -7,7 +7,7 @@ import { Button, TextField } from 'show/components';
 
 const Register = ({ register, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = payload => updateProps(payload);
+  const dispatchUpdateProps = updateProps();
 
   const registerUser = e => {
     e.preventDefault();

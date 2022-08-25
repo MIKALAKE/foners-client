@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import { mock } from 'process/helpers';
 
-const Driver = (driver, getDriver) => {
+const Driver = ({ driver, getDriver }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -95,6 +95,9 @@ Driver.defaultProps = {
   getDriver: mock
 };
 
-Driver.propTypes = { dirver: PropTypes.object, getDriver: PropTypes.func };
+Driver.propTypes = {
+  driver: PropTypes.object,
+  getDriver: PropTypes.func
+};
 
 export default Driver;

@@ -8,7 +8,10 @@ import Standings from './view';
 export default connect(
   state => ({
     constructors: state.constructors.constructors,
-    dirvers: state.drivers.drivers
+    drivers: state.drivers.drivers
   }),
-  { getConstructors: getConstructors, getDrivers: getDrivers }
+  {
+    getConstructors: getConstructors,
+    getDrivers: getDrivers
+  }
 )(Standings);

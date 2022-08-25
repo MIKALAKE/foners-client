@@ -7,7 +7,7 @@ import Register from './view';
 
 export default connect(
   state => ({
-    transien: state.transient
+    transient: state.transient
   }),
   {
     register: register,

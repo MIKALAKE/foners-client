@@ -12,24 +12,24 @@ import {
 import { mock } from 'process/helpers';
 import { onFieldChange } from 'process/helpers';
 
-const Admin = (
+const Admin = ({
   addConstructor,
   addDriver,
   addEvent,
+  constructors,
+  drivers,
+  events,
   getConstructors,
   getDrivers,
   getEvents,
-  updateProps,
   transient,
-  drivers,
-  constructors,
-  events
-) => {
+  updateProps
+}) => {
   const [createEventModal, setCreateEventModal] = useState(false);
   const [createDriverModal, setCreateDriverModal] = useState(false);
   const [createConstructorModal, setCreateConstructorModal] = useState(false);
 
-  const dispatchUpdateProps = payload => updateProps(payload);
+  const dispatchUpdateProps = updateProps();
 
   const searchQuery = transient.searchQuery;
 
@@ -641,28 +641,28 @@ Admin.defautProps = {
   addConstructor: mock,
   addDriver: mock,
   addEvent: mock,
+  constructors: [],
+  drivers: [],
+  events: [],
   getConstructors: mock,
   getDrivers: mock,
   getEvents: mock,
-  updateProps: mock,
   transient: {},
-  drivers: [],
-  constructors: [],
-  events: []
+  updateProps: mock
 };
 
 Admin.propTypes = {
   addConstructor: PropTypes.func,
   addDriver: PropTypes.func,
   addEvent: PropTypes.func,
+  constructors: PropTypes.array,
+  drivers: PropTypes.array,
+  events: PropTypes.array,
   getConstructors: PropTypes.func,
   getDrivers: PropTypes.func,
   getEvents: PropTypes.func,
-  updateProps: PropTypes.func,
   transient: PropTypes.object,
-  drivers: PropTypes.array,
-  constructors: PropTypes.array,
-  events: PropTypes.array
+  updateProps: PropTypes.func
 };
 
 export default Admin;

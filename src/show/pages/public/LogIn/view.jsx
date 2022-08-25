@@ -9,7 +9,7 @@ import { Button, TextField } from 'show/components';
 
 const LogIn = ({ logIn, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = payload => updateProps(payload);
+  const dispatchUpdateProps = updateProps();
 
   const submit = e => {
     e.preventDefault();
