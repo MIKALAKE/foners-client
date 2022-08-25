@@ -9,7 +9,6 @@ import { Button, TextField } from 'show/components';
 
 const LogIn = ({ logIn, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = updateProps();
 
   const submit = e => {
     e.preventDefault();
@@ -35,7 +34,7 @@ const LogIn = ({ logIn, transient, updateProps }) => {
                 placeholder='Email'
                 value={transient.email}
                 onChange={e =>
-                  onFieldChange('email', e.target.value, dispatchUpdateProps)
+                  onFieldChange('email', e.target.value, updateProps)
                 }
               />
             </div>
@@ -45,7 +44,7 @@ const LogIn = ({ logIn, transient, updateProps }) => {
                 placeholder='Password'
                 value={transient.password}
                 onChange={e =>
-                  onFieldChange('password', e.target.value, dispatchUpdateProps)
+                  onFieldChange('password', e.target.value, updateProps)
                 }
               />
             </div>
@@ -69,6 +68,7 @@ LogIn.defaultProps = {
   transient: mock,
   updateProps: mock
 };
+
 LogIn.propTypes = {
   logIn: PropTypes.func,
   transient: PropTypes.object,

@@ -7,7 +7,6 @@ import { Button, TextField } from 'show/components';
 
 const Register = ({ register, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = updateProps();
 
   const registerUser = e => {
     e.preventDefault();
@@ -28,7 +27,7 @@ const Register = ({ register, transient, updateProps }) => {
               placeholder='First Name'
               value={transient.first_name}
               onChange={e =>
-                onFieldChange('first_name', e.target.value, dispatchUpdateProps)
+                onFieldChange('first_name', e.target.value, updateProps)
               }
             />
           </div>
@@ -39,7 +38,7 @@ const Register = ({ register, transient, updateProps }) => {
               placeholder='Last Name'
               value={transient.last_name}
               onChange={e =>
-                onFieldChange('last_name', e.target.value, dispatchUpdateProps)
+                onFieldChange('last_name', e.target.value, updateProps)
               }
             />
           </div>
@@ -50,7 +49,7 @@ const Register = ({ register, transient, updateProps }) => {
               placeholder='Email'
               value={transient.email}
               onChange={e =>
-                onFieldChange('email', e.target.value, dispatchUpdateProps)
+                onFieldChange('email', e.target.value, updateProps)
               }
             />
           </div>
@@ -61,7 +60,7 @@ const Register = ({ register, transient, updateProps }) => {
               placeholder='Password'
               value={transient.password}
               onChange={e =>
-                onFieldChange('password', e.target.value, dispatchUpdateProps)
+                onFieldChange('password', e.target.value, updateProps)
               }
             />
           </div>
