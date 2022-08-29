@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 import Paths from 'process/routes/paths';
-import { mock, onFieldChange } from 'process/helpers';
 import { Button, TextField } from 'show/components';
+import { mock, onFieldChange } from 'process/helpers';
 
 const Register = ({ register, transient, updateProps }) => {
   const navigate = useNavigate();

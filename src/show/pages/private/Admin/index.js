@@ -15,7 +15,7 @@ export default connect(
     constructors: state.constructors.constructors,
     drivers: state.drivers.drivers,
     events: state.events.events,
-    transien: state.transient
+    transient: state.transient
   }),
   {
     addConstructor: addConstructor,

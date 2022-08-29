@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { mock } from 'process/helpers';
+
 const Constructor = ({ constructor, getConstructor }) => {
   const { id } = useParams();
 

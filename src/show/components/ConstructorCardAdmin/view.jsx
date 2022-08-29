@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
-import {
-  deleteConstructor,
-  editConstructor
-} from 'process/slices/constructorsSlice';
+import { mock } from 'process/helpers';
 
 import { Button, ConstructorInfoCard, Modal, TextField } from '../';
 
-const ConstructorCardAdmin = ({ constructor }) => {
+const ConstructorCardAdmin = ({
+  constructor,
+  deleteConstructor,
+  editConstructor
+}) => {
   const [constructorAdminModal, setConstructorAdminModal] = useState(false);
   const [editConstructorModal, setEditConstructorModal] = useState(false);
   const [editedConstructor, setEditedConstructor] = useState(constructor);
 
-  const dispatch = useDispatch();
-
   const updateConstructor = () => {
-    dispatch(editConstructor(editedConstructor));
+    editConstructor(editedConstructor);
     setEditConstructorModal(false);
   };
 
@@ -67,9 +65,7 @@ const ConstructorCardAdmin = ({ constructor }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() =>
-                      dispatch(deleteConstructor({ id: constructor.id }))
-                    }
+                    onClick={() => deleteConstructor({ id: constructor.id })}
                   />
                 </div>
               </div>
@@ -242,11 +238,15 @@ const ConstructorCardAdmin = ({ constructor }) => {
 };
 
 ConstructorCardAdmin.defaultProps = {
-  constructor: {}
+  constructor: {},
+  deleteConstructor: mock,
+  editConstructor: mock
 };
 
 ConstructorCardAdmin.propTypes = {
-  constructor: PropTypes.object
+  constructor: PropTypes.object,
+  deleteConstructor: PropTypes.func,
+  editConstructor: PropTypes.func
 };
 
 export default ConstructorCardAdmin;

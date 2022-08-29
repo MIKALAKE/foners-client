@@ -4,15 +4,15 @@ import { GiPodium } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
 import { BsSpeedometer2 } from 'react-icons/bs';
 
+import { mock } from 'process/helpers';
 import Paths from 'process/routes/paths';
-import { logOut } from 'process/slices/userSlice';
 
-const Navbar = ({ currentUser }) => {
+const Navbar = ({ currentUser, logOut, transient }) => {
   const navigate = useNavigate();
 
   const handleLogOutClick = e => {
     e.preventDefault();
-    logOut();
+    logOut(transient);
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -54,10 +54,14 @@ const Navbar = ({ currentUser }) => {
 };
 
 Navbar.defaultProps = {
-  currentUser: {}
+  currentUser: {},
+  logOut: mock,
+  transient: {}
 };
 
 Navbar.propTypes = {
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  logOut: PropTypes.func,
+  transient: PropTypes.object
 };
 export default Navbar;
