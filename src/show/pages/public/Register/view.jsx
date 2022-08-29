@@ -1,22 +1,16 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Paths from 'process/routes/paths';
-import { onFieldChange } from 'process/helpers';
-import { register } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
-import { updateProps } from 'process/slices/transientSlice';
+import { mock, onFieldChange } from 'process/helpers';
 
-const Register = () => {
-  const transient = useSelector(state => state.transient);
-
-  const dispatch = useDispatch();
+const Register = ({ register, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
   const registerUser = e => {
     e.preventDefault();
-    dispatch(register(transient));
+    register(transient);
   };
 
   return (
@@ -33,7 +27,7 @@ const Register = () => {
               placeholder='First Name'
               value={transient.first_name}
               onChange={e =>
-                onFieldChange('first_name', e.target.value, dispatchUpdateProps)
+                onFieldChange('first_name', e.target.value, updateProps)
               }
             />
           </div>
@@ -44,7 +38,7 @@ const Register = () => {
               placeholder='Last Name'
               value={transient.last_name}
               onChange={e =>
-                onFieldChange('last_name', e.target.value, dispatchUpdateProps)
+                onFieldChange('last_name', e.target.value, updateProps)
               }
             />
           </div>
@@ -55,7 +49,7 @@ const Register = () => {
               placeholder='Email'
               value={transient.email}
               onChange={e =>
-                onFieldChange('email', e.target.value, dispatchUpdateProps)
+                onFieldChange('email', e.target.value, updateProps)
               }
             />
           </div>
@@ -66,7 +60,7 @@ const Register = () => {
               placeholder='Password'
               value={transient.password}
               onChange={e =>
-                onFieldChange('password', e.target.value, dispatchUpdateProps)
+                onFieldChange('password', e.target.value, updateProps)
               }
             />
           </div>
@@ -82,6 +76,18 @@ const Register = () => {
       </div>
     </div>
   );
+};
+
+Register.defaultProps = {
+  register: mock,
+  transient: {},
+  updateProps: mock
+};
+
+Register.propTypes = {
+  register: PropTypes.func,
+  transient: PropTypes.object,
+  updateProps: PropTypes.func
 };
 
 export default Register;

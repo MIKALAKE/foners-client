@@ -1,21 +1,18 @@
+import PropTypes from 'prop-types';
 import { FiLogIn } from 'react-icons/fi';
 import { GiPodium } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { BsCalendarFill, BsSpeedometer2 } from 'react-icons/bs';
+import { BsSpeedometer2 } from 'react-icons/bs';
 
+import { mock } from 'process/helpers';
 import Paths from 'process/routes/paths';
-import { logOut } from 'process/slices/userSlice';
 
-const Navbar = () => {
-  const currentUser = useSelector(state => state.user);
-
-  const dispatch = useDispatch();
+const Navbar = ({ currentUser, logOut, transient }) => {
   const navigate = useNavigate();
 
   const handleLogOutClick = e => {
     e.preventDefault();
-    dispatch(logOut());
+    logOut(transient);
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -27,9 +24,6 @@ const Navbar = () => {
           className='flex select-none items-center antialiased text-white font-bold flex-row text-2xl ml-5'>
           <BsSpeedometer2 className='mx-2 select-none text-4xl' />
           FOners
-        </div>
-        <div className='flex select-none items-center flex-row font-semibold text-white text-lg mt-1 ml-10 cursor-pointer hover:text-charade hover:scale-125 delay-100 easy-in-out transition-all'>
-          <BsCalendarFill className='mx-2 select-none' /> Calendar
         </div>
         <div
           onClick={() => navigate(Paths.public.STANDINGS_PATH)}
@@ -59,4 +53,15 @@ const Navbar = () => {
   );
 };
 
+Navbar.defaultProps = {
+  currentUser: {},
+  logOut: mock,
+  transient: {}
+};
+
+Navbar.propTypes = {
+  currentUser: PropTypes.object,
+  logOut: PropTypes.func,
+  transient: PropTypes.object
+};
 export default Navbar;

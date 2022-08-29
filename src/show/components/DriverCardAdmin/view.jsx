@@ -1,20 +1,17 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
-import { deleteDriver, editDriver } from 'process/slices/driversSlice';
+import { mock } from 'process/helpers';
 
 import { Button, DriverInfoCard, Modal, TextField } from '../';
 
-const DriverCardAdmin = ({ driver }) => {
+const DriverCardAdmin = ({ deleteDriver, driver, editDriver }) => {
   const [driverAdminModal, setDriverAdminModal] = useState(false);
   const [editDriverModal, setEditDriverModal] = useState(false);
   const [editedDriver, setEditedDriver] = useState(driver);
 
-  const dispatch = useDispatch();
-
   const updateDriver = () => {
-    dispatch(editDriver(editedDriver));
+    editDriver(editedDriver);
     setEditDriverModal(false);
   };
 
@@ -59,7 +56,7 @@ const DriverCardAdmin = ({ driver }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() => dispatch(deleteDriver({ id: driver.id }))}
+                    onClick={() => deleteDriver({ id: driver.id })}
                   />
                 </div>
               </div>
@@ -242,11 +239,15 @@ const DriverCardAdmin = ({ driver }) => {
 };
 
 DriverCardAdmin.defaultProps = {
-  driver: {}
+  deleteDriver: mock,
+  driver: {},
+  editDriver: mock
 };
 
 DriverCardAdmin.propTypes = {
-  driver: PropTypes.object
+  deleteDriver: PropTypes.func,
+  driver: PropTypes.object,
+  editDriver: PropTypes.func
 };
 
 export default DriverCardAdmin;

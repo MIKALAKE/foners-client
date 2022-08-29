@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { Fragment, useState } from 'react';
 
-import { deleteEvent, editEvent } from 'process/slices/eventsSlice';
+import { mock } from 'process/helpers';
 
 import { Button, EventInfoCard, Modal, TextField } from '../';
+import { deleteEvent } from 'process/slices/eventsSlice';
 
-const EventCardAdmin = ({ event }) => {
+const EventCardAdmin = ({ deleteEvent, editEvent, event }) => {
   const [eventAdminModal, setEventAdminModal] = useState(false);
   const [editEventModal, setEditEventModal] = useState(false);
   const [editedEvent, setEditedEvent] = useState(event);
 
-  const dispatch = useDispatch();
-
   const updateEvent = () => {
-    dispatch(editEvent(editedEvent));
+    editEvent(editedEvent);
     setEditEventModal(false);
   };
 
@@ -60,7 +58,7 @@ const EventCardAdmin = ({ event }) => {
                   <Button
                     variant='primary'
                     label='Delete'
-                    onClick={() => dispatch(deleteEvent({ id: event.id }))}
+                    onClick={() => deleteEvent({ id: event.id })}
                   />
                 </div>
               </div>
@@ -189,10 +187,14 @@ const EventCardAdmin = ({ event }) => {
 };
 
 EventCardAdmin.defaultProps = {
+  deleteEvent: mock,
+  editEvent: mock,
   event: {}
 };
 
 EventCardAdmin.propTypes = {
+  deleteEvent: PropTypes.func,
+  editEvent: PropTypes.func,
   event: PropTypes.object
 };
 

@@ -1,23 +1,18 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { mock } from 'process/helpers';
 import Paths from 'process/routes/paths';
-import { getEvent } from 'process/slices/eventsSlice';
-import { getConstructors } from 'process/slices/constructorsSlice';
 import { ConstructorCard, DriverCard, UpcomingEvent } from 'show/components';
 
-const Home = () => {
-  const event = useSelector(state => state.events.event);
-  const constructors = useSelector(state => state.constructors.constructors);
-
-  const dispatch = useDispatch();
+const Home = ({ constructors, event, getConstructors, getEvent }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getEvent(''));
-    dispatch(getConstructors(''));
-  }, [dispatch]);
+    getEvent('');
+    getConstructors('');
+  }, [getEvent, getConstructors]);
 
   return (
     <div className='flex flex-col w-full h-full'>
@@ -75,6 +70,20 @@ const Home = () => {
       </div>
     </div>
   );
+};
+
+Home.defaultProps = {
+  constructors: [],
+  event: {},
+  getConstructors: mock,
+  getEvent: mock
+};
+
+Home.propTypes = {
+  constructors: PropTypes.array,
+  event: PropTypes.object,
+  getConstructors: PropTypes.func,
+  getEvent: PropTypes.func
 };
 
 export default Home;

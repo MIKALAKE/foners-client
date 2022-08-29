@@ -1,33 +1,29 @@
-import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { getDriver } from 'process/slices/driversSlice';
+import { mock } from 'process/helpers';
 
-const Driver = () => {
+const Constructor = ({ constructor, getConstructor }) => {
   const { id } = useParams();
-  const driver = useSelector(state => state.drivers.driver);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDriver({ id }));
-  }, [dispatch, id]);
+    getConstructor({ id });
+  }, [getConstructor, id]);
 
   return (
     <div className='bg-white-600 w-full h-full'>
-      {driver && (
+      {constructor && (
         <div className='flex flex-col'>
           <div className='flex flex-row'>
             <img
               className='w-44 h-44 mx-5 my-5'
-              src={driver.avatar_url}
-              alt={driver.first_name}
+              src={constructor.logo_url}
+              alt={constructor.name}
             />
             <div className='flex mt-10 justify-center w-full'>
               <div className='text-5xl font-extrabold mr-44 text-charade'>
-                {driver.first_name} {driver.last_name}
+                {constructor.name}
               </div>
             </div>
           </div>
@@ -36,47 +32,31 @@ const Driver = () => {
               Description:
             </div>
             <div className='text-1xl font-extrabold ml-10 text-charade'>
-              {driver.description}
+              {constructor.description}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
             <div className='text-2xl font-extrabold ml-3 text-charade'>
-              Nickname:
-            </div>
-            <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {driver.nickname}
-            </div>
-          </div>
-          <div className='flex mt-10 justify-start items-center w-full'>
-            <div className='text-2xl font-extrabold ml-3 text-charade'>
-              Race Number:
+              Origins:
             </div>
             <div className='text-2xl font-bold ml-5 text-charade'>
-              #{driver.race_number}
+              {constructor.origins}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
             <div className='text-2xl font-extrabold ml-3 text-charade'>
-              Day of Birth:
+              First Apparence:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              <Moment format='DD-MM-Y'>{driver.birth_date}</Moment>
+              {constructor.first_apparence}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
             <div className='text-2xl font-extrabold ml-3 text-charade'>
-              Nationality:
+              Titles:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {driver.nationality}
-            </div>
-          </div>
-          <div className='flex mt-10 justify-start items-center w-full'>
-            <div className='text-2xl font-extrabold ml-3 text-charade'>
-              Height:
-            </div>
-            <div className='text-2xl font-extrabold ml-5 text-charade'>
-              {driver.height}
+              {constructor.titles}
             </div>
           </div>
           <div className='flex mt-10 justify-start items-center w-full'>
@@ -84,8 +64,15 @@ const Driver = () => {
               Points this season:
             </div>
             <div className='text-2xl font-extrabold ml-5 text-secondary'>
-              {driver.points}
+              {constructor.points}
             </div>
+          </div>
+          <div className='flex mt-10 justify-center w-full'>
+            <img
+              className='w-96 h-25 justify-center'
+              src={constructor.car_url}
+              alt={constructor.name}
+            />
           </div>
         </div>
       )}
@@ -93,4 +80,14 @@ const Driver = () => {
   );
 };
 
-export default Driver;
+Constructor.defaultProps = {
+  constructor: {},
+  getConstructor: mock
+};
+
+Constructor.propTypes = {
+  constructor: PropTypes.object,
+  getConstructor: PropTypes.func
+};
+
+export default Constructor;

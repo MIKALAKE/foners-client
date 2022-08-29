@@ -1,23 +1,18 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineAccountBox } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { mock } from 'process/helpers';
 import Paths from 'process/routes/paths';
 import { onFieldChange } from 'process/helpers';
-import { logIn } from 'process/slices/userSlice';
 import { Button, TextField } from 'show/components';
-import { updateProps } from 'process/slices/transientSlice';
 
-const LogIn = () => {
-  const transient = useSelector(state => state.transient);
-
-  const dispatch = useDispatch();
+const LogIn = ({ logIn, transient, updateProps }) => {
   const navigate = useNavigate();
-  const dispatchUpdateProps = payload => dispatch(updateProps(payload));
 
   const submit = e => {
     e.preventDefault();
-    dispatch(logIn(transient));
+    logIn(transient);
     navigate(Paths.public.HOME_PATH);
   };
 
@@ -39,7 +34,7 @@ const LogIn = () => {
                 placeholder='Email'
                 value={transient.email}
                 onChange={e =>
-                  onFieldChange('email', e.target.value, dispatchUpdateProps)
+                  onFieldChange('email', e.target.value, updateProps)
                 }
               />
             </div>
@@ -49,7 +44,7 @@ const LogIn = () => {
                 placeholder='Password'
                 value={transient.password}
                 onChange={e =>
-                  onFieldChange('password', e.target.value, dispatchUpdateProps)
+                  onFieldChange('password', e.target.value, updateProps)
                 }
               />
             </div>
@@ -66,6 +61,18 @@ const LogIn = () => {
       </div>
     </div>
   );
+};
+
+LogIn.defaultProps = {
+  logIn: mock,
+  transient: mock,
+  updateProps: mock
+};
+
+LogIn.propTypes = {
+  logIn: PropTypes.func,
+  transient: PropTypes.object,
+  updateProps: PropTypes.func
 };
 
 export default LogIn;
